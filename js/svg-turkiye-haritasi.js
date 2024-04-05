@@ -1279,7 +1279,7 @@ function svgturkiyeharitasi() {
       "bursa",
       "burdur",
     ],
-    "#FFEE59": [
+    "#fff6a9": [
       "ardahan",
       "bitlis",
       "elazig",
