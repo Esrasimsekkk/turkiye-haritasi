@@ -49,7 +49,7 @@ function svgturkiyeharitasi() {
       showGeriButon();
 
       const bbox = ilPath.getBBox();
-      const padding = 400;
+      const padding = 380;
       const viewBoxValue = [
         bbox.x - padding + 100,
         bbox.y - padding - 35,
@@ -252,11 +252,11 @@ function svgturkiyeharitasi() {
       showGeriButon();
 
       const bbox = ilPath.getBBox();
-      const padding = 270;
+      const padding = 240;
 
       const viewBoxValue = [
         bbox.x - padding + 50,
-        bbox.y - padding + 50,
+        bbox.y - padding + 40,
         bbox.width + padding * 2,
         bbox.height + padding * 2,
       ].join(" ");
