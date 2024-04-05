@@ -1,0 +1,172 @@
+/*! SVG Türkiye Haritası | CSS | MIT Lisans | dnomak.com */
+body {
+  overflow-x: hidden; /* Sayfanın sağ kenarında oluşan taşmayı gizler */
+}
+
+
+.svg-turkiye-haritasi {
+  max-width: 1840px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 0px;
+
+}
+/*.svg-turkiye-haritasi svg {
+  width: 100%;
+  height: auto;
+}*/
+.il-isimleri {
+  position: absolute;
+  z-index: 1;
+}
+.il-isimleri div {
+  font-family: 'Open Sans';
+  display: inline-block;
+  background: #1094F6;
+  color: #fff;
+  padding: 5px 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/*#svg-turkiye-haritasi path {
+  cursor: pointer;
+  fill: #9e7b3a;
+}*/
+#svg-turkiye-haritasi .green path {
+  cursor: pointer;
+  fill: #80EF8D;
+}
+#svg-turkiye-haritasi .yellow path {
+  cursor: pointer;
+  fill: #fff6a9;
+}
+#svg-turkiye-haritasi .pink path {
+  cursor: pointer;
+  fill: #F3BBC4;
+}
+#svg-turkiye-haritasi .orange g path {
+  cursor: pointer;
+  fill: #FFBB21;
+}
+#svg-turkiye-haritasi .red path {
+  cursor: pointer;
+  fill: #FF8480;
+}
+#svg-turkiye-haritasi .blue path {
+  cursor: pointer;
+  fill: #D0FFDF;
+}
+#svg-turkiye-haritasi .purple path {
+  cursor: pointer;
+  fill: #B5D94F;
+}
+#svg-turkiye-haritasi .brown path {
+  cursor: pointer;
+  fill: #CAC0A4;
+}
+
+#svg-turkiye-haritasi .nokta .il {
+  cursor: pointer;
+  fill: #000000;
+}
+#svg-turkiye-haritasi .nokta .il:hover {
+  cursor: pointer;
+  fill: #4c4444;
+}
+#svg-turkiye-haritasi .nokta path {
+  fill: #ff0404;
+}
+
+#svg-turkiye-haritasi g g path:hover {
+  fill: #1094F6;
+}
+
+#svg-turkiye-haritasi g #guneykibris path  {
+  fill: #CAC0A4;
+  pointer-events: none;
+}
+#svg-turkiye-haritasi #s path  {
+  fill: #ffff;
+  pointer-events: none;
+}
+
+#guney-kibris {
+  pointer-events: none;
+}
+
+div.modal-body {
+  padding: 0px;
+}
+
+.il:hover {
+  fill: #ff0000; /* Mouse üzerine gelindiğinde ilin rengini değiştir */
+}
+.maplabels1 {
+  pointer-events: none;
+}
+
+#geri-butonu {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  display: none;
+}
+
+#geri-butonu:hover {
+  background-color: #ddd;
+}
+
+
+/* CSS */
+.button-23 {
+  background-color: #FFFFFF;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: 100px;
+}
+
+.button-23:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.button-23:active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
+}
+
+.button-23:disabled {
+  border-color: #DDDDDD;
+  color: #DDDDDD;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+
+
