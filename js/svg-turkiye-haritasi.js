@@ -151,7 +151,7 @@ function svgturkiyeharitasi() {
       showGeriButon();
 
       const bbox = ilPath.getBBox();
-      const padding = 90;
+      const padding = 100;
 
       const viewBoxValue = [
         bbox.x - padding - 50,
