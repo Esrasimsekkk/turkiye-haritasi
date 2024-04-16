@@ -39,7 +39,6 @@ function svgturkiyeharitasi() {
   const zoomPaths = svgHaritasi.querySelectorAll(".zoom");
 
   // Renk paleti tanımla
-
   function zoomToIl(ilID) {
     const ilPath = document.querySelector(`[data-merkez="${ilID}"]`);
 
