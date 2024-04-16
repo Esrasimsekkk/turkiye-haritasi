@@ -37,33 +37,65 @@ body {
   cursor: pointer;
   fill: #80EF8D;
 }
+#svg-turkiye-haritasi .green g .ozel {
+  cursor: pointer;
+  fill: #5abd65;
+}
 #svg-turkiye-haritasi .yellow path {
   cursor: pointer;
   fill: #fff6a9;
+}
+#svg-turkiye-haritasi .yellow g .ozel {
+  cursor: pointer;
+  fill: #c3bc80;
 }
 #svg-turkiye-haritasi .pink path {
   cursor: pointer;
   fill: #F3BBC4;
 }
+#svg-turkiye-haritasi .pink g .ozel {
+  cursor: pointer;
+  fill: #c08a93;
+}
 #svg-turkiye-haritasi .orange g path {
   cursor: pointer;
   fill: #FFBB21;
+}
+#svg-turkiye-haritasi .orange g .ozel {
+  cursor: pointer;
+  fill: #de9b00 ;
 }
 #svg-turkiye-haritasi .red path {
   cursor: pointer;
   fill: #FF8480;
 }
+#svg-turkiye-haritasi .red g .ozel {
+  cursor: pointer;
+  fill: #ff554f;
+}
 #svg-turkiye-haritasi .blue path {
   cursor: pointer;
   fill: #D0FFDF;
+}
+#svg-turkiye-haritasi .blue g .ozel {
+  cursor: pointer;
+  fill: #73b4a0;
 }
 #svg-turkiye-haritasi .purple path {
   cursor: pointer;
   fill: #B5D94F;
 }
+#svg-turkiye-haritasi .purple g .ozel {
+  cursor: pointer;
+  fill: #85a52c;
+}
 #svg-turkiye-haritasi .brown path {
   cursor: pointer;
   fill: #CAC0A4;
+}
+#svg-turkiye-haritasi .brown g .ozel {
+  cursor: pointer;
+  fill: #a59b7e;
 }
 
 #svg-turkiye-haritasi .nokta .il {
@@ -79,6 +111,9 @@ body {
 }
 
 #svg-turkiye-haritasi g g path:hover {
+  fill: #1094F6;
+}
+#svg-turkiye-haritasi g g .ozel:hover {
   fill: #1094F6;
 }
 
