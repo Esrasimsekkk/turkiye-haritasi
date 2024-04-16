@@ -108,8 +108,13 @@ body {
   fill: #ff0404;
 }
 
+<<<<<<< HEAD
 #svg-turkiye-haritasi .ozelnokta path {
   fill: #a91818;
+=======
+#svg-turkiye-haritasi .ozel path {
+  fill: #e1ff00;
+>>>>>>> 3af86fd11ec6107b8c2a3b43f1540f56019c0768
 }
 
 #svg-turkiye-haritasi g g path:hover {
