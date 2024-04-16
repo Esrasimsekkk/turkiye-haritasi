@@ -43,6 +43,9 @@ function svgturkiyeharitasi() {
   function zoomToIl(ilID) {
     const ilPath = document.querySelector(`[data-merkez="${ilID}"]`);
 
+   
+    
+
     if (ilID === "konya") {
       // Konya için özel viewBox değerleri
       zoom = true;
@@ -59,7 +62,9 @@ function svgturkiyeharitasi() {
       svgHaritasi.setAttribute("viewBox", viewBoxValue);
     } else if (ilID === "antalya") {
       zoom = true;
+
       showGeriButon();
+
       const bbox = ilPath.getBBox();
       const padding = 260;
 
@@ -451,8 +456,8 @@ function svgturkiyeharitasi() {
       const padding = 300;
 
       const viewBoxValue = [
-        bbox.x - padding + 100,
-        bbox.y - padding + 100,
+        bbox.x - padding + 30,
+        bbox.y - padding + 53,
         bbox.width + padding * 2,
         bbox.height + padding * 2,
       ].join(" ");
@@ -1248,6 +1253,7 @@ function svgturkiyeharitasi() {
     }
     ilcePath.addEventListener("click", function (event) {
       const ilID = ilcePath.getAttribute("data-merkez"); // İl ID'sini al
+
       zoomToIl(ilID); // İlgili ilin tüm ilçelerinin rengini değiştirerek zoom yap
     });
   });
@@ -1427,3 +1433,20 @@ function svgturkiyeharitasi() {
     .getElementById("geri-butonu")
     .addEventListener("click", clickGeriButon);
 }
+/*
+function applySpecialColor(ilcePaths) {
+  ilcePaths.forEach((ilcePath) => {
+    // Özel renk sınıfına sahip ilçeleri kontrol etme
+    if (ilcePath.classList.contains("ozel")) {
+      ilcePath.style.fill = "#B5D94F"; // Özel renk uygula
+      ilcePath.addEventListener("mouseover", function () {
+        ilcePath.style.fill = "#1094F6"; // Özel sınıfa sahip öğelerin üzerine gelindiğinde farklı rengi uygula
+      });
+      ilcePath.addEventListener("mouseout", function () {
+        ilcePath.style.fill = "#B5D94F"; // Önceden seçilen rengine geri dön
+      });
+    }
+  });
+}
+*/
+
