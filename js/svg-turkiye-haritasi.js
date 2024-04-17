@@ -42,9 +42,6 @@ function svgturkiyeharitasi() {
   function zoomToIl(ilID) {
     const ilPath = document.querySelector(`[data-merkez="${ilID}"]`);
 
-   
-    
-
     if (ilID === "konya") {
       // Konya için özel viewBox değerleri
       zoom = true;
@@ -1448,4 +1445,3 @@ function applySpecialColor(ilcePaths) {
   });
 }
 */
-
