@@ -1233,6 +1233,7 @@ function svgturkiyeharitasi() {
           if (seciliIlceler.has(ilceID)) {
             if(isOzelIlce(ilceID)){
               unselectOzelIlceTek(ilceID)
+              seciliIlceler.delete(ilceID);
             }else{
               unselectIlceTek(ilceID);
               seciliIlceler.delete(ilceID); // İlçeyi listeden sil
@@ -1240,13 +1241,13 @@ function svgturkiyeharitasi() {
             
           } else {
             // Eğer ilçe henüz seçili değilse, select işlemi yap
-            selectIlce(ilceID);
+            selectIlceTek(ilceID);
             seciliIlceler.add(ilceID); // İlçeyi listeye ekle
           }
         } else {
           // Eğer ilçe zaten seçili ise, unselect işlemi yap
           if (seciliIlceler.has(ilceID)) {
-            unselectIlce(ilID);
+            unselectIlceGrup(ilID);
             seciliIlceler.delete(ilceID); // İlçeyi listeden sil
           } else {
             // Eğer ilçe henüz seçili değilse, select işlemi yap
@@ -1374,24 +1375,37 @@ function svgturkiyeharitasi() {
   };
 
 
-  function unselectIlce(ilID) {
+  function unselectIlceGrup(ilID) {
     if (ilcelerGrup.has(ilID)) {
       ilcelerGrup.get(ilID).forEach((ilcePath) => {
         const ilceID = ilcePath.id;
         let ilceOriginalColor = "#fefffe"; // Varsayılan renk
-        console.log(ilID);
-        // İl ID'si ilRenkleri listesinde bulunuyorsa ilçenin orijinal rengini belirle
-        Object.keys(ilRenkleri).forEach((renk) => {
-          if (ilRenkleri[renk].includes(ilID)) {
-            ilceOriginalColor = renk;
+        
+        // Özel ilçe renklerini kontrol et
+        for (const renk in ozelIlceRenkleri) {
+          if (ozelIlceRenkleri.hasOwnProperty(renk)) {
+            if (ozelIlceRenkleri[renk].includes(ilceID)) {
+              ilceOriginalColor = renk;
+              break;
+            }
           }
-        });
-
+        }
+        
+        // Eğer özel ilçe değilse, ilRenkleri listesine bak
+        if (ilceOriginalColor === "#fefffe") {
+          Object.keys(ilRenkleri).forEach((renk) => {
+            if (ilRenkleri[renk].includes(ilID)) {
+              ilceOriginalColor = renk;
+            }
+          });
+        }
+  
         ilcePath.style.fill = ilceOriginalColor; // Önceden seçilen rengine geri dön
         seciliIlceler.delete(ilceID); // İlçeyi listeden sil
       });
     }
   }
+  
 
   function unselectIlceTek(ilceID) {
     const ilcePath = document.getElementById(ilceID);
@@ -1412,7 +1426,7 @@ function svgturkiyeharitasi() {
   }
 
   // Belirli bir ilçeyi seçme fonksiyonu
-  function selectIlce(ilceID) {
+  function selectIlceTek(ilceID) {
     const ilcePath = document.getElementById(ilceID);
     if (ilcePath) {
       ilcePath.style.fill = "#1094F6"; // Seçili rengi uygula (örneğin mavi)
@@ -1420,6 +1434,50 @@ function svgturkiyeharitasi() {
     }
   }
 
+
+  const ozelIlceRenkleri = {
+    "#c3bc80": ["edremit-balikesir","bandirma","erdek","susurluk", "gonen-balikesir", "ayvalik","luleburgaz","amasra","talas","unye","fatsa","ardesen","kadirli"],
+    "#5abd65": ["karacabey", "mudanya","mustafakemalpasa","nilufer","osmangazi","gemlik","gursu","kestel","orhangazi","iznik","inegol","kesan","silivri","buyukcekmece","arnavutkoy","sultanbeyli","bergama","dikili","aliaga","menemen","cesme","seferihisar","torbali","selcuk","tire","bucak","aksehir","beysehir","seydisehir","eregli","sorgun","bafra","terme","akcaabat","siverek","viransehir"],
+    "#c08a93": ["malkara", "corlu","saray","marmaraereglisi","cerkezkoy","soma","akhisar","turgutlu","salihli","alasehir","demirci","kizilcahamam","pursuklar","golbasi","polatli","eregli","caycuma","turhal","erbaa","niksan"],
+    "#de9b00": ["gelibolu", "biga","can", "darica","cayirova","gebze","korfez", "derince", "kandira","kartepe","karamursel","finike","kumluca","kemer","dosemealti","serik","manavgat","alanya","merzifon","suluova","kelkit","dogubeyazit"],
+    "#ff554f": ["didim", "kusadasi", "soke", "nazilli","simav","gediz","tavsanli","bor","sungurlu","bulancak","nizip","hopa"],
+    "#73b4a0": ["bozuyuk", "dinar","sandikli", "bolvadin", "urgup", "avanos","elbistan","gediz"],
+    "#85a52c": ["tosya", "ceyhan", "kozan","kiziltepe", "midyat","nusaybin","akcakoca"],
+    "#a59b7e": ["bodrum", "datca", "milas", "yatagan","marmaris", "ortaca","dalaman","fethiye","seydikemer", "anamur", "silifke", "erdemli","tarsus","cizre"],
+  };
+  
+  
+  function isOzelIlce(ilceID) {
+    for (const renk in ozelIlceRenkleri) {
+      if (ozelIlceRenkleri.hasOwnProperty(renk)) {
+        if (ozelIlceRenkleri[renk].includes(ilceID)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  
+  
+  // Örnek kullanım:
+  function unselectOzelIlceTek(ilceID) {
+      const ilcePath = document.getElementById(ilceID);
+      if (ilcePath) {
+          const ilID = ilcePath.getAttribute("id");
+          let ilceOriginalColor = "#fefffe"; // Varsayılan renk
+  
+          // İl ID'si ozelIlceRenkleri listesinde bulunuyorsa ilçenin orijinal rengini belirle
+          Object.keys(ozelIlceRenkleri).forEach((renk) => {
+              if (ozelIlceRenkleri[renk].includes(ilID)) {
+                  ilceOriginalColor = renk;
+              }
+          });
+  
+          ilcePath.style.fill = ilceOriginalColor; // Önceden seçilen rengine geri dön
+          seciliIlceler.delete(ilceID); // İlçeyi listeden sil
+      }
+  }
+  
   function showGeriButon() {
     document.getElementById("geri-butonu").style.display = "block";
   }
@@ -1440,104 +1498,3 @@ function svgturkiyeharitasi() {
     .addEventListener("click", clickGeriButon);
 }
 
-
-
-/*
-function applySpecialColor(ilcePaths) {
-  ilcePaths.forEach((ilcePath) => {
-    // Özel renk sınıfına sahip ilçeleri kontrol etme
-    if (ilcePath.classList.contains("ozel")) {
-      ilcePath.style.fill = "#B5D94F"; // Özel renk uygula
-      ilcePath.addEventListener("mouseover", function () {
-        ilcePath.style.fill = "#1094F6"; // Özel sınıfa sahip öğelerin üzerine gelindiğinde farklı rengi uygula
-      });
-      ilcePath.addEventListener("mouseout", function () {
-        ilcePath.style.fill = "#B5D94F"; // Önceden seçilen rengine geri dön
-      });
-    }
-  });
-}
-*/
-
-
-const ozelIlceRenkleri = {
-  "#c3bc80": ["edremit-balikesir", "gonen", "ayvalik","luleburgaz","amasra","talas","unye","fatsa","ardesen","kadirli"],
-  "#5abd65": ["karacabey", "mudanya","mustafakemalpasa","nilufer","osmangazi","gemlik","gursu","kestel","orhangazi","iznik","inegol","kesan","silivri","buyukcekmece","arnavutkoy","sultanbeyli","bergama","dikili","aliaga","menemen","cesme","seferihisar","torbali","selcuk","tire","bucak","aksehir","beysehir","seydisehir","eregli","sorgun","bafra","terme","akcaabat","siverek","viransehir"],
-  "#c08a93": ["malkara", "corlu","saray","marmaraereglisi","cerkezkoy","soma","akhisar","turgutlu","salihli","alasehir","demirci","kizilcahamam","pursuklar","golbasi","polatli","eregli","caycuma","turhal","erbaa","niksan"],
-  "#de9b00": ["gelibolu", "biga","can", "darica","cayirova","gebze","korfez", "derince", "kandira","kartepe","karamursel","finike","kumluca","kemer","dosemealti","serik","manavgat","alanya","merzifon","suluova","kelkit","dogubeyazit"],
-  "#ff554f": ["didim", "kusadasi", "soke", "nazilli","simav","gediz","tavsanli","bor","sungurlu","bulancak","nizip","hopa"],
-  "#73b4a0": ["bozuyuk", "dinar","sandikli", "bolvadin", "urgup", "avanos","elbistan","gediz"],
-  "#85a52c": ["tosya", "ceyhan", "kozan","kiziltepe", "midyat","nusaybin","akcakoca"],
-  "#a59b7e": ["bodrum", "datca", "milas", "yatagan","marmaris", "ortaca","dalaman","fethiye","seydikemer", "anamur", "silifke", "erdemli","tarsus","cizre"],
-};
-
-
-function isOzelIlce(ilceID) {
-  for (const renk in ozelIlceRenkleri) {
-    const ozelIlceler = ozelIlceRenkleri[renk];
-    if (ozelIlceler.includes(ilceID)) {
-      return true; // İlçe özel ise true döndür
-    }
-  }
-  return false; // İlçe özel değil ise false döndür
-}
-
-// Örnek kullanım:
-function unselectOzelIlceTek(ilceID) {
-    const ilcePath = document.getElementById(ilceID);
-    if (ilcePath) {
-        const ilID = ilcePath.getAttribute("id");
-        let ilceOriginalColor = "#fefffe"; // Varsayılan renk
-
-        // İl ID'si ozelIlceRenkleri listesinde bulunuyorsa ilçenin orijinal rengini belirle
-        Object.keys(ozelIlceRenkleri).forEach((renk) => {
-            if (ozelIlceRenkleri[renk].includes(ilID)) {
-                ilceOriginalColor = renk;
-            }
-        });
-
-        ilcePath.style.fill = ilceOriginalColor; // Önceden seçilen rengine geri dön
-        seciliIlceler.delete(ilceID); // İlçeyi listeden sil
-    }
-}
-/*
-function unselectIlce(ilID) {
-  if (ilcelerGrup.has(ilID)) {
-      ilcelerGrup.get(ilID).forEach((ilcePath) => {
-          const ilceID = ilcePath.id;
-          let ilceOriginalColor = "#fefffe"; // Varsayılan renk
-
-          // Özel ilçelerin renklerini kontrol et
-          if (isOzelIlce(ilceID)) {
-              // Özel ilçe ise, özel ilçe rengini al
-              ilceOriginalColor = getOzelIlceColor(ilceID);
-              console.log(ilceOriginalColor)
-          } else {
-              // Özel ilçe değilse, ilRenkleri listesinden ilgili rengi bul
-              Object.keys(ilRenkleri).forEach((renk) => {
-                  if (ilRenkleri[renk].includes(ilID)) {
-                      ilceOriginalColor = renk;
-                  }
-              });
-          }
-
-          ilcePath.style.fill = ilceOriginalColor; // Önceden seçilen rengine geri dön
-          seciliIlceler.delete(ilceID); // İlçeyi listeden sil
-      });
-  }
-}
-
-// Verilen ilçe ID'sinin özel bir ilçe olup olmadığını kontrol eder
-
-
-// Verilen özel ilçe ID'sinin rengini döndürür
-function getOzelIlceColor(ilceID) {
-  let color = "#fefffe"; // Varsayılan renk
-  Object.keys(ozelIlceRenkleri).forEach((renk) => {
-      if (ozelIlceRenkleri[renk].includes(ilceID)) {
-          color = renk;
-      }
-  });
-  return color;
-}
-*/
