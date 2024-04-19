@@ -1232,10 +1232,6 @@ function svgturkiyeharitasi() {
               unselectOzelIlceTek(ilceID);
               seciliIlceler.delete(ilceID);
             } else {
-            if(isOzelIlce(ilceID)){
-              unselectOzelIlceTek(ilceID)
-              seciliIlceler.delete(ilceID);
-            }else{
               unselectIlceTek(ilceID);
               seciliIlceler.delete(ilceID); // İlçeyi listeden sil
             }
@@ -1374,14 +1370,12 @@ function svgturkiyeharitasi() {
     // Diğer renkler ve il grupları...
   };
 
-
   function unselectIlceGrup(ilID) {
     if (ilcelerGrup.has(ilID)) {
       ilcelerGrup.get(ilID).forEach((ilcePath) => {
         const ilceID = ilcePath.id;
         let ilceOriginalColor = "#fefffe"; // Varsayılan renk
 
-        
         // Özel ilçe renklerini kontrol et
         for (const renk in ozelIlceRenkleri) {
           if (ozelIlceRenkleri.hasOwnProperty(renk)) {
@@ -1392,7 +1386,6 @@ function svgturkiyeharitasi() {
           }
         }
 
-        
         // Eğer özel ilçe değilse, ilRenkleri listesine bak
         if (ilceOriginalColor === "#fefffe") {
           Object.keys(ilRenkleri).forEach((renk) => {
@@ -1402,13 +1395,11 @@ function svgturkiyeharitasi() {
           });
         }
 
-  
         ilcePath.style.fill = ilceOriginalColor; // Önceden seçilen rengine geri dön
         seciliIlceler.delete(ilceID); // İlçeyi listeden sil
       });
     }
   }
-  
 
   function unselectIlceTek(ilceID) {
     const ilcePath = document.getElementById(ilceID);
@@ -1439,11 +1430,11 @@ function svgturkiyeharitasi() {
 
   const ozelIlceRenkleri = {
     "#c3bc80": [
-      "bEdremit",
+      "edremit-balikesir",
       "bandirma",
       "erdek",
       "susurluk",
-      "bGonen",
+      "gonen-balikesir",
       "ayvalik",
       "luleburgaz",
       "amasra",
@@ -1483,7 +1474,7 @@ function svgturkiyeharitasi() {
       "aksehir",
       "beysehir",
       "seydisehir",
-      "kEregli",
+      "eregli",
       "sorgun",
       "bafra",
       "terme",
@@ -1494,7 +1485,7 @@ function svgturkiyeharitasi() {
     "#c08a93": [
       "malkara",
       "corlu",
-      "tsaray",
+      "saray",
       "marmaraereglisi",
       "cerkezkoy",
       "soma",
@@ -1505,17 +1496,13 @@ function svgturkiyeharitasi() {
       "demirci",
       "kizilcahamam",
       "pursuklar",
-      "anGolbasi",
+      "golbasi",
       "polatli",
-      "zEregli",
+      "eregli",
       "caycuma",
       "turhal",
       "erbaa",
-      "niksar",
-      "dortyol",
-      "iskenderun",
-      "kirikhan",
-      "hatayMerkez",
+      "niksan",
     ],
     "#de9b00": [
       "gelibolu",
@@ -1592,19 +1579,6 @@ function svgturkiyeharitasi() {
     ],
   };
 
-
-  const ozelIlceRenkleri = {
-    "#c3bc80": ["edremit-balikesir","bandirma","erdek","susurluk", "gonen-balikesir", "ayvalik","luleburgaz","amasra","talas","unye","fatsa","ardesen","kadirli"],
-    "#58ba64": ["karacabey", "mudanya","mustafakemalpasa","nilufer","osmangazi","gemlik","gursu","kestel","orhangazi","iznik","inegol","kesan","silivri","buyukcekmece","arnavutkoy","sultanbeyli","bergama","dikili","aliaga","menemen","cesme","seferihisar","torbali","selcuk","tire","bucak","aksehir","beysehir","seydisehir","eregli","sorgun","bafra","terme","akcaabat","siverek","viransehir"],
-    "#c08a93": ["malkara", "corlu","saray","marmaraereglisi","cerkezkoy","soma","akhisar","turgutlu","salihli","alasehir","demirci","kizilcahamam","pursuklar","golbasi","polatli","eregli","caycuma","turhal","erbaa","niksan"],
-    "#de9b00": ["gelibolu", "biga","can", "darica","cayirova","gebze","korfez", "derince", "kandira","kartepe","karamursel","finike","kumluca","kemer","dosemealti","serik","manavgat","alanya","merzifon","suluova","kelkit","dogubeyazit"],
-    "#ff554f": ["didim", "kusadasi", "soke", "nazilli","simav","gediz","tavsanli","bor","sungurlu","bulancak","nizip","hopa"],
-    "#9de0cc": ["bozuyuk", "dinar","sandikli", "bolvadin", "urgup", "avanos","elbistan","gediz"],
-    "#92b535": ["tosya", "ceyhan", "kozan","kiziltepe", "midyat","nusaybin","akcakoca"],
-    "#a59b7e": ["bodrum", "datca", "milas", "yatagan","marmaris", "ortaca","dalaman","fethiye","seydikemer", "anamur", "silifke", "erdemli","tarsus","cizre"],
-  };
-  
-  
   function isOzelIlce(ilceID) {
     for (const renk in ozelIlceRenkleri) {
       if (ozelIlceRenkleri.hasOwnProperty(renk)) {
@@ -1635,27 +1609,6 @@ function svgturkiyeharitasi() {
     }
   }
 
-  
-  
-  // Örnek kullanım:
-  function unselectOzelIlceTek(ilceID) {
-      const ilcePath = document.getElementById(ilceID);
-      if (ilcePath) {
-          const ilID = ilcePath.getAttribute("id");
-          let ilceOriginalColor = "#fefffe"; // Varsayılan renk
-  
-          // İl ID'si ozelIlceRenkleri listesinde bulunuyorsa ilçenin orijinal rengini belirle
-          Object.keys(ozelIlceRenkleri).forEach((renk) => {
-              if (ozelIlceRenkleri[renk].includes(ilID)) {
-                  ilceOriginalColor = renk;
-              }
-          });
-  
-          ilcePath.style.fill = ilceOriginalColor; // Önceden seçilen rengine geri dön
-          seciliIlceler.delete(ilceID); // İlçeyi listeden sil
-      }
-  }
-  
   function showGeriButon() {
     document.getElementById("geri-butonu").style.display = "block";
   }
@@ -1674,35 +1627,32 @@ function svgturkiyeharitasi() {
   document
     .getElementById("geri-butonu")
     .addEventListener("click", clickGeriButon);
-}
-  document.getElementById("geri-butonu").addEventListener("click", clickGeriButon);
 
   function getIlceDetay(seciliIlceler) {
-    
     // Seçili ilçelerin adlarını bir diziye aktar
-    const ilceAdlari = Array.from(seciliIlceler).map(ilceID => {
+    const ilceAdlari = Array.from(seciliIlceler).map((ilceID) => {
       const ilcePath = document.getElementById(ilceID);
-      return ilcePath.getAttribute('id');
+      return ilcePath.getAttribute("id");
     });
-  console.log(ilceAdlari);
+    console.log(ilceAdlari);
     // Seçili ilçelerin adlarını "ilce_detay.php" dosyasına gönder
-    fetch('ilceler.php', {
-      method: 'POST',
+    fetch("ilceler.php", {
+      method: "POST",
       body: JSON.stringify({ ilce_adlari: ilceAdlari }),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(response => response.json())
-      .then(ilceDetaylari => {
+      .then((response) => response.json())
+      .then((ilceDetaylari) => {
         // Gelen JSON verisini JavaScript nesnelerine dönüştür
-        const ilceler = ilceDetaylari.map(ilceDetay => {
+        const ilceler = ilceDetaylari.map((ilceDetay) => {
           const { ilce_id, il_id, ilce_adi, ilce_detay } = ilceDetay;
           return {
             ilceID: ilce_id,
             ilID: il_id,
             ilceAdi: ilce_adi,
-            ilceDetay: ilce_detay
+            ilceDetay: ilce_detay,
           };
         });
         console.log(ilceDetay);
@@ -1712,15 +1662,12 @@ function svgturkiyeharitasi() {
         // Modal veya pencerenin içeriğine ilçe detaylarını yerleştirin
         // ... (İlçe detaylarını modale veya pencereye ekleme kodunuzu ekleyin)
       })
-      .catch(error => {
-        console.error('İlçe detayı yüklenemedi:', error);
+      .catch((error) => {
+        console.error("İlçe detayı yüklenemedi:", error);
       });
   }
-  
 
-
-
-/*
+  /*
   function getIlceDetay() {
     // Secili ilceler setinden bir dizi olustur
     const seciliIlceArray = Array.from(seciliIlceler);
@@ -1751,43 +1698,36 @@ function svgturkiyeharitasi() {
 }
 */
 
-function getIlceDetay(seciliIlceler) {
-  // Seçili ilçelerin adlarını bir diziye aktar
-  const ilceAdlari = Array.from(seciliIlceler).map(ilceID => {
-    const ilcePath = document.getElementById(ilceID);
-    return ilcePath.getAttribute('id');
-  });
-
-  // Seçili ilçelerin adlarını "ilce_detay.php" dosyasına gönder
-  fetch('ilceler.php', {
-    method: 'POST',
-    body: JSON.stringify({ ilce_adlari: ilceAdlari }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .then(ilceDetaylari => {
-      // Gelen JSON verisini JavaScript nesnelerine dönüştür
-      const ilceler = ilceDetaylari.map(ilceDetay => {
-        const { ilce_id, il_id, ilce_adi, ilce_detay } = ilceDetay;
-        return {
-          ilceID: ilce_id,
-          ilID: il_id,
-          ilceAdi: ilce_adi,
-          ilceDetay: ilce_detay
-        };
-      });
-
-
-    })
-    .catch(error => {
-      console.error('İlçe detayı yüklenemedi:', error);
+  function getIlceDetay(seciliIlceler) {
+    // Seçili ilçelerin adlarını bir diziye aktar
+    const ilceAdlari = Array.from(seciliIlceler).map((ilceID) => {
+      const ilcePath = document.getElementById(ilceID);
+      return ilcePath.getAttribute("id");
     });
+
+    // Seçili ilçelerin adlarını "ilce_detay.php" dosyasına gönder
+    fetch("ilceler.php", {
+      method: "POST",
+      body: JSON.stringify({ ilce_adlari: ilceAdlari }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((ilceDetaylari) => {
+        // Gelen JSON verisini JavaScript nesnelerine dönüştür
+        const ilceler = ilceDetaylari.map((ilceDetay) => {
+          const { ilce_id, il_id, ilce_adi, ilce_detay } = ilceDetay;
+          return {
+            ilceID: ilce_id,
+            ilID: il_id,
+            ilceAdi: ilce_adi,
+            ilceDetay: ilce_detay,
+          };
+        });
+      })
+      .catch((error) => {
+        console.error("İlçe detayı yüklenemedi:", error);
+      });
+  }
 }
-
-
-    
-
-
- 
