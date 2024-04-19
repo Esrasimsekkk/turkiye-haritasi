@@ -37,7 +37,7 @@ body {
 }
 #svg-turkiye-haritasi .green g .ozel {
   cursor: pointer;
-  fill: #5abd65;
+  fill: #58ba64;
 }
 #svg-turkiye-haritasi .yellow path {
   cursor: pointer;
@@ -77,7 +77,11 @@ body {
 }
 #svg-turkiye-haritasi .blue g .ozel {
   cursor: pointer;
+<<<<<<<<< Temporary merge branch 1
   fill: #9de0cc;
+=========
+  fill: #9de0cc
+>>>>>>>>> Temporary merge branch 2
 }
 #svg-turkiye-haritasi .purple path {
   cursor: pointer;
@@ -85,7 +89,7 @@ body {
 }
 #svg-turkiye-haritasi .purple g .ozel {
   cursor: pointer;
-  fill: #85a52c;
+  fill: #92b535;
 }
 #svg-turkiye-haritasi .brown path {
   cursor: pointer;

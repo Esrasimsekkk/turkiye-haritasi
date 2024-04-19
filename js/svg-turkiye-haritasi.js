@@ -1429,12 +1429,6 @@ function svgturkiyeharitasi() {
 
   const ozelIlceRenkleri = {
     "#c3bc80": [
-      "edremit-balikesir",
-      "bandirma",
-      "erdek",
-      "susurluk",
-      "gonen-balikesir",
-
       "bEdremit",
       "bandirma",
       "erdek",
@@ -1479,7 +1473,6 @@ function svgturkiyeharitasi() {
       "aksehir",
       "beysehir",
       "seydisehir",
-      "eregli",
       "kEregli",
       "sorgun",
       "bafra",
@@ -1491,7 +1484,6 @@ function svgturkiyeharitasi() {
     "#c08a93": [
       "malkara",
       "corlu",
-      "saray",
       "tsaray",
       "marmaraereglisi",
       "cerkezkoy",
@@ -1503,13 +1495,6 @@ function svgturkiyeharitasi() {
       "demirci",
       "kizilcahamam",
       "pursuklar",
-      "golbasi",
-      "polatli",
-      "eregli",
-      "caycuma",
-      "turhal",
-      "erbaa",
-      "niksan",
       "anGolbasi",
       "polatli",
       "zEregli",
