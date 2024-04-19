@@ -1228,17 +1228,10 @@ function svgturkiyeharitasi() {
         const ilceID = ilcePath.id;
         if (zoom) {
           if (seciliIlceler.has(ilceID)) {
-<<<<<<< HEAD
-            if (isOzelIlce(ilceID)) {
-              unselectOzelIlceTek(ilceID);
-              seciliIlceler.delete(ilceID);
-            } else {
-=======
             if(isOzelIlce(ilceID)){
               unselectOzelIlceTek(ilceID)
               seciliIlceler.delete(ilceID);
             }else{
->>>>>>> yunus
               unselectIlceTek(ilceID);
               seciliIlceler.delete(ilceID); // İlçeyi listeden sil
             }
@@ -1377,20 +1370,12 @@ function svgturkiyeharitasi() {
     // Diğer renkler ve il grupları...
   };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> yunus
   function unselectIlceGrup(ilID) {
     if (ilcelerGrup.has(ilID)) {
       ilcelerGrup.get(ilID).forEach((ilcePath) => {
         const ilceID = ilcePath.id;
         let ilceOriginalColor = "#fefffe"; // Varsayılan renk
-<<<<<<< HEAD
-
-=======
         
->>>>>>> yunus
         // Özel ilçe renklerini kontrol et
         for (const renk in ozelIlceRenkleri) {
           if (ozelIlceRenkleri.hasOwnProperty(renk)) {
@@ -1400,11 +1385,7 @@ function svgturkiyeharitasi() {
             }
           }
         }
-<<<<<<< HEAD
-
-=======
         
->>>>>>> yunus
         // Eğer özel ilçe değilse, ilRenkleri listesine bak
         if (ilceOriginalColor === "#fefffe") {
           Object.keys(ilRenkleri).forEach((renk) => {
@@ -1413,11 +1394,7 @@ function svgturkiyeharitasi() {
             }
           });
         }
-<<<<<<< HEAD
-
-=======
   
->>>>>>> yunus
         ilcePath.style.fill = ilceOriginalColor; // Önceden seçilen rengine geri dön
         seciliIlceler.delete(ilceID); // İlçeyi listeden sil
       });
@@ -1452,163 +1429,6 @@ function svgturkiyeharitasi() {
     }
   }
 
-<<<<<<< HEAD
-  const ozelIlceRenkleri = {
-    "#c3bc80": [
-      "bEdremit",
-      "bandirma",
-      "erdek",
-      "susurluk",
-      "bGonen",
-      "ayvalik",
-      "luleburgaz",
-      "amasra",
-      "talas",
-      "unye",
-      "fatsa",
-      "ardesen",
-      "kadirli",
-    ],
-    "#58ba64": [
-      "karacabey",
-      "mudanya",
-      "mustafakemalpasa",
-      "nilufer",
-      "osmangazi",
-      "gemlik",
-      "gursu",
-      "kestel",
-      "orhangazi",
-      "iznik",
-      "inegol",
-      "kesan",
-      "silivri",
-      "buyukcekmece",
-      "arnavutkoy",
-      "sultanbeyli",
-      "bergama",
-      "dikili",
-      "aliaga",
-      "menemen",
-      "cesme",
-      "seferihisar",
-      "torbali",
-      "selcuk",
-      "tire",
-      "bucak",
-      "aksehir",
-      "beysehir",
-      "seydisehir",
-      "kEregli",
-      "sorgun",
-      "bafra",
-      "terme",
-      "akcaabat",
-      "siverek",
-      "viransehir",
-    ],
-    "#c08a93": [
-      "malkara",
-      "corlu",
-      "tsaray",
-      "marmaraereglisi",
-      "cerkezkoy",
-      "soma",
-      "akhisar",
-      "turgutlu",
-      "salihli",
-      "alasehir",
-      "demirci",
-      "kizilcahamam",
-      "pursuklar",
-      "anGolbasi",
-      "polatli",
-      "zEregli",
-      "caycuma",
-      "turhal",
-      "erbaa",
-      "niksar",
-      "dortyol",
-      "iskenderun",
-      "kirikhan",
-      "hatayMerkez",
-    ],
-    "#de9b00": [
-      "gelibolu",
-      "biga",
-      "can",
-      "darica",
-      "cayirova",
-      "gebze",
-      "korfez",
-      "derince",
-      "kandira",
-      "kartepe",
-      "karamursel",
-      "finike",
-      "kumluca",
-      "kemer",
-      "dosemealti",
-      "serik",
-      "manavgat",
-      "alanya",
-      "merzifon",
-      "suluova",
-      "kelkit",
-      "dogubeyazit",
-    ],
-    "#ff554f": [
-      "didim",
-      "kusadasi",
-      "soke",
-      "nazilli",
-      "simav",
-      "gediz",
-      "tavsanli",
-      "bor",
-      "sungurlu",
-      "bulancak",
-      "nizip",
-      "hopa",
-    ],
-    "#9de0cc": [
-      "bozuyuk",
-      "dinar",
-      "sandikli",
-      "bolvadin",
-      "urgup",
-      "avanos",
-      "elbistan",
-      "gediz",
-    ],
-    "#92b535": [
-      "tosya",
-      "ceyhan",
-      "kozan",
-      "kiziltepe",
-      "midyat",
-      "nusaybin",
-      "akcakoca",
-    ],
-    "#a59b7e": [
-      "bodrum",
-      "datca",
-      "milas",
-      "yatagan",
-      "marmaris",
-      "ortaca",
-      "dalaman",
-      "fethiye",
-      "seydikemer",
-      "anamur",
-      "silifke",
-      "erdemli",
-      "tarsus",
-      "cizre",
-    ],
-  };
-
-=======
 
   const ozelIlceRenkleri = {
     "#c3bc80": ["edremit-balikesir","bandirma","erdek","susurluk", "gonen-balikesir", "ayvalik","luleburgaz","amasra","talas","unye","fatsa","ardesen","kadirli"],
@@ -1622,7 +1442,6 @@ function svgturkiyeharitasi() {
   };
   
   
->>>>>>> yunus
   function isOzelIlce(ilceID) {
     for (const renk in ozelIlceRenkleri) {
       if (ozelIlceRenkleri.hasOwnProperty(renk)) {
@@ -1633,28 +1452,6 @@ function svgturkiyeharitasi() {
     }
     return false;
   }
-<<<<<<< HEAD
-
-  // Örnek kullanım:
-  function unselectOzelIlceTek(ilceID) {
-    const ilcePath = document.getElementById(ilceID);
-    if (ilcePath) {
-      const ilID = ilcePath.getAttribute("id");
-      let ilceOriginalColor = "#fefffe"; // Varsayılan renk
-
-      // İl ID'si ozelIlceRenkleri listesinde bulunuyorsa ilçenin orijinal rengini belirle
-      Object.keys(ozelIlceRenkleri).forEach((renk) => {
-        if (ozelIlceRenkleri[renk].includes(ilID)) {
-          ilceOriginalColor = renk;
-        }
-      });
-
-      ilcePath.style.fill = ilceOriginalColor; // Önceden seçilen rengine geri dön
-      seciliIlceler.delete(ilceID); // İlçeyi listeden sil
-    }
-  }
-
-=======
   
   
   // Örnek kullanım:
@@ -1676,7 +1473,6 @@ function svgturkiyeharitasi() {
       }
   }
   
->>>>>>> yunus
   function showGeriButon() {
     document.getElementById("geri-butonu").style.display = "block";
   }
@@ -1692,12 +1488,6 @@ function svgturkiyeharitasi() {
     // ... ilk hale dönme kodunuz ...
   }
 
-<<<<<<< HEAD
-  document
-    .getElementById("geri-butonu")
-    .addEventListener("click", clickGeriButon);
-}
-=======
   document.getElementById("geri-butonu").addEventListener("click", clickGeriButon);
 
   function getIlceDetay(seciliIlceler) {
@@ -1813,4 +1603,3 @@ function getIlceDetay(seciliIlceler) {
     
 }
 
->>>>>>> yunus
