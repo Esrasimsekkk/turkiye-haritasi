@@ -3,6 +3,7 @@
 // Veritabanı bağlantısı için db_config.php dosyasını dahil edin
 require_once 'config/db_config.php';
 
+
 // Boş veya null değer kontrolü ekleyin
 if (empty($_POST['ilce_adlari']) || is_null($_POST['ilce_adlari'])) {
   echo "Hata: ilçe adları bilgisi gönderilmedi.";
