@@ -1224,18 +1224,13 @@ function svgturkiyeharitasi() {
       // Yalnızca data-il özelliği bulunan pathleri dinle
       ilcePath.addEventListener("click", function (event) {
         const ilceID = ilcePath.id;
-        getIlceDetay();
         if (zoom) {
           if (seciliIlceler.has(ilceID)) {
             if (isOzelIlce(ilceID)) {
               unselectOzelIlceTek(ilceID);
               seciliIlceler.delete(ilceID);
-<<<<<<< HEAD
               
             }else{
-=======
-            } else {
->>>>>>> main
               unselectIlceTek(ilceID);
               seciliIlceler.delete(ilceID); // İlçeyi listeden sil
             }
@@ -1255,6 +1250,8 @@ function svgturkiyeharitasi() {
             seciliIlceler.add(ilceID); // İlçeyi listeye ekle
           }
         }
+        getIlceDetay();
+        
       });
     }
     ilcePath.addEventListener("click", function (event) {
@@ -1632,51 +1629,8 @@ function svgturkiyeharitasi() {
     .getElementById("geri-butonu")
     .addEventListener("click", clickGeriButon);
 
-<<<<<<< HEAD
   
 
-=======
-  function getIlceDetay(seciliIlceler) {
-    // Seçili ilçelerin adlarını bir diziye aktar
-    const ilceAdlari = Array.from(seciliIlceler).map((ilceID) => {
-      const ilcePath = document.getElementById(ilceID);
-      return ilcePath.getAttribute("id");
-    });
-    console.log(ilceAdlari);
-    // Seçili ilçelerin adlarını "ilce_detay.php" dosyasına gönder
-    fetch("ilceler.php", {
-      method: "POST",
-      body: JSON.stringify({ ilce_adlari: ilceAdlari }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((ilceDetaylari) => {
-        // Gelen JSON verisini JavaScript nesnelerine dönüştür
-        const ilceler = ilceDetaylari.map((ilceDetay) => {
-          const { ilce_id, il_id, ilce_adi, ilce_detay } = ilceDetay;
-          return {
-            ilceID: ilce_id,
-            ilID: il_id,
-            ilceAdi: ilce_adi,
-            ilceDetay: ilce_detay,
-          };
-        });
-        console.log(ilceDetay);
-
-        // İlçe detaylarını gösteren bir modal veya pencere oluştur
-        // ... (Modal veya pencere oluşturma kodunuzu ekleyin)
-        // Modal veya pencerenin içeriğine ilçe detaylarını yerleştirin
-        // ... (İlçe detaylarını modale veya pencereye ekleme kodunuzu ekleyin)
-      })
-      .catch((error) => {
-        console.error("İlçe detayı yüklenemedi:", error);
-      });
-  }
-
-  /*
->>>>>>> main
   function getIlceDetay() {
     // Secili ilceler setinden bir dizi oluştur
     const seciliIlceArray = Array.from(seciliIlceler);
@@ -1738,7 +1692,6 @@ function svgturkiyeharitasi() {
     const data = JSON.stringify({ ilceler: seciliIlceArray });
     xhr.send(data);
 }
-<<<<<<< HEAD
 
 
 
@@ -1747,40 +1700,3 @@ function svgturkiyeharitasi() {
     
 }
 
-=======
-*/
-
-  function getIlceDetay(seciliIlceler) {
-    // Seçili ilçelerin adlarını bir diziye aktar
-    const ilceAdlari = Array.from(seciliIlceler).map((ilceID) => {
-      const ilcePath = document.getElementById(ilceID);
-      return ilcePath.getAttribute("id");
-    });
-
-    // Seçili ilçelerin adlarını "ilce_detay.php" dosyasına gönder
-    fetch("ilceler.php", {
-      method: "POST",
-      body: JSON.stringify({ ilce_adlari: ilceAdlari }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((ilceDetaylari) => {
-        // Gelen JSON verisini JavaScript nesnelerine dönüştür
-        const ilceler = ilceDetaylari.map((ilceDetay) => {
-          const { ilce_id, il_id, ilce_adi, ilce_detay } = ilceDetay;
-          return {
-            ilceID: ilce_id,
-            ilID: il_id,
-            ilceAdi: ilce_adi,
-            ilceDetay: ilce_detay,
-          };
-        });
-      })
-      .catch((error) => {
-        console.error("İlçe detayı yüklenemedi:", error);
-      });
-  }
-}
->>>>>>> main
