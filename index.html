@@ -23994,6 +23994,310 @@
         />
       </svg>
     </div>
+    <div class="container">
+      <div class="row">
+        <!-- Pozitif Bölüm -->
+        <div class="col table-info p-4 custom-table">
+          <h3>POZİTİF <br /></h3>
+          <div class="row mt-3">
+            <div class="col">
+              <h5>İller</h5>
+              <textarea
+                id="pozitifIllerTextarea"
+                class="form-control"
+                style="width: 100%; font-size: 12px"
+                rows="7"
+                placeholder="Pozitif İller buraya"
+              ></textarea>
+              <button
+                onclick="kopyala('pozitifIllerTextarea')"
+                class="btn btn-dark mt-2"
+              >
+                Kopyala
+              </button>
+            </div>
+            <div class="col">
+              <h5>İlçeler</h5>
+              <textarea
+                id="pozitifIlcelerTextarea"
+                class="form-control"
+                style="width: 100%; font-size: 12px"
+                rows="7"
+                placeholder="Pozitif İlçeler buraya"
+              ></textarea>
+              <button
+                onclick="kopyala('pozitifIlcelerTextarea')"
+                class="btn btn-dark mt-2"
+              >
+                Kopyala
+              </button>
+            </div>
+            <div class="col">
+              <h5>Semtler</h5>
+              <textarea
+                id="pozitifSemtlerTextarea"
+                class="form-control"
+                style="width: 100%; font-size: 12px"
+                rows="7"
+                placeholder="Pozitif Semtler buraya"
+              ></textarea>
+              <button
+                onclick="kopyala('pozitifSemtlerTextarea')"
+                class="btn btn-dark mt-2"
+              >
+                Kopyala
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Negatif Bölüm -->
+        <div class="col table-warning p-4 custom-table ml-4">
+          <h3>NEGATİF<br /></h3>
+          <div class="row mt-3">
+            <div class="col">
+              <h5>İller</h5>
+              <textarea
+                id="negatifIllerTextarea"
+                class="form-control"
+                style="width: 100%; font-size: 12px"
+                rows="7"
+                placeholder="Negatif İller buraya"
+              ></textarea>
+              <button
+                onclick="kopyala('negatifIllerTextarea')"
+                class="btn btn-dark mt-2"
+              >
+                Kopyala
+              </button>
+            </div>
+            <div class="col">
+              <h5>İlçeler</h5>
+              <textarea
+                id="negatifIlcelerTextarea"
+                class="form-control"
+                style="width: 100%; font-size: 12px"
+                rows="7"
+                placeholder="Negatif İlçeler buraya"
+              ></textarea>
+              <button
+                onclick="kopyala('negatifIlcelerTextarea')"
+                class="btn btn-dark mt-2"
+              >
+                Kopyala
+              </button>
+            </div>
+            <div class="col">
+              <h5>Semtler</h5>
+              <textarea
+                id="negatifSemtlerTextarea"
+                class="form-control"
+                style="width: 100%; font-size: 12px"
+                rows="7"
+                placeholder="Negatif Semtler buraya"
+              ></textarea>
+              <button
+                onclick="kopyala('negatifSemtlerTextarea')"
+                class="btn btn-dark mt-2"
+              >
+                Kopyala
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col custom-table table-success mr-3">
+          <!-- Genel Negatifler Listesi -->
+          <div class="col mt-4">
+            <h5>Genel Negatifler Listesi</h5>
+            <textarea
+              style="font-size: 14px"
+              id="genelNegatiflerTextarea"
+              class="form-control"
+              rows="5"
+              placeholder="Genel Negatifler buraya"
+            ></textarea>
+          </div>
+          <!-- Genel Negatifler Listesine Ekle -->
+          <div class="col mt-4">
+            <h5>Genel Negatifler Listesine Ekle</h5>
+            <textarea
+              style="font-size: 14px"
+              id="genelNegatifEkleTextarea"
+              class="form-control"
+              rows="1"
+              placeholder="Genel Negatifler Listesine Ekle"
+            ></textarea>
+            <button
+              onclick="ekle('genelNegatiflerTextarea', 'genelNegatifEkleTextarea')"
+              class="btn btn-dark mt-2"
+            >
+              Ekle
+            </button>
+          </div>
+          <!-- Genel Negatifler Listesinden Sil -->
+          <div class="col mt-4">
+            <h5>Genel Negatifler Listesinden Sil</h5>
+            <textarea
+              style="font-size: 14px"
+              id="genelNegatifSilTextarea"
+              class="form-control"
+              rows="1"
+              placeholder="Genel Negatifler Listesinden Sil"
+            ></textarea>
+            <button
+              onclick="sil('genelNegatiflerTextarea', 'genelNegatifSilTextarea')"
+              class="btn btn-dark mt-2 mb-4"
+            >
+              Sil
+            </button>
+          </div>
+        </div>
+        <div class="col custom-table table-success mr-3">
+          <!-- Negatif Siteler Listesi -->
+          <div class="col mt-4">
+            <h5>Negatif Siteler Listesi</h5>
+            <textarea
+              style="font-size: 14px"
+              id="negatiflerTextarea"
+              class="form-control"
+              rows="5"
+              placeholder="Negatif Siteler buraya"
+            ></textarea>
+          </div>
+          <!-- Negatif Siteler Listesine Ekle -->
+          <div class="col mt-4">
+            <h5>Negatif Siteler Listesine Ekle</h5>
+            <textarea
+              style="font-size: 14px"
+              id="negatifEkleTextarea"
+              class="form-control"
+              rows="1"
+              placeholder="Negatif Siteler Listesine Ekle"
+            ></textarea>
+            <button
+              onclick="ekle('negatiflerTextarea', 'negatifEkleTextarea')"
+              class="btn btn-dark mt-2"
+            >
+              Ekle
+            </button>
+          </div>
+          <!-- Negatif Siteler Listesinden Sil -->
+          <div class="col mt-4">
+            <h5>Negatif Siteler Listesinden Sil</h5>
+            <textarea
+              style="font-size: 14px"
+              id="negatifSilTextarea"
+              class="form-control"
+              rows="1"
+              placeholder="Negatif Siteler Listesinden Sil"
+            ></textarea>
+            <button
+              onclick="sil('negatiflerTextarea', 'negatifSilTextarea')"
+              class="btn btn-dark mt-2"
+            >
+              Sil
+            </button>
+          </div>
+        </div>
+        <div class="col custom-table table-success">
+          <!-- Pozitif Siteler Listesi -->
+          <div class="col mt-4">
+            <h5>Pozitif Siteler Listesi</h5>
+            <textarea
+              style="font-size: 14px"
+              id="poztiflerTextarea"
+              class="form-control"
+              rows="5"
+              placeholder="Pozitif Siteler buraya"
+            ></textarea>
+          </div>
+          <!-- Pozitif Siteler Listesine Ekle -->
+          <div class="col mt-4">
+            <h5>Pozitif Siteler Listesine Ekle</h5>
+            <textarea
+              style="font-size: 14px"
+              id="pozitifEkleTextarea"
+              class="form-control"
+              rows="1"
+              placeholder="Pozitif Siteler Listesine Ekle"
+            ></textarea>
+            <button
+              onclick="ekle('pozitiflerTextarea', 'pozitifEkleTextarea')"
+              class="btn btn-dark mt-2"
+            >
+              Ekle
+            </button>
+          </div>
+          <!-- Pozitif Siteler Listesinden Sil -->
+          <div class="col mt-4">
+            <h5>Pozitif Siteler Listesinden Sil</h5>
+            <textarea
+              style="font-size: 14px"
+              id="pozitifSilTextarea"
+              class="form-control"
+              rows="1"
+              placeholder="Pozitif Siteler Listesinden Sil"
+            ></textarea>
+            <button
+              onclick="sil('pozitiflerTextarea', 'pozitifSilTextarea')"
+              class="btn btn-dark mt-2 mb-3"
+            >
+              Sil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function ekle(genelNegatiflerId, eklenecekId) {
+        var genelNegatiflerTextarea =
+          document.getElementById(genelNegatiflerId);
+        var eklenecekTextarea = document.getElementById(eklenecekId);
+        var yeniNegatif = eklenecekTextarea.value.trim();
+
+        if (yeniNegatif !== "") {
+          if (genelNegatiflerTextarea.value !== "") {
+            genelNegatiflerTextarea.value += "\n" + yeniNegatif;
+          } else {
+            genelNegatiflerTextarea.value += yeniNegatif;
+          }
+        }
+
+        eklenecekTextarea.value = "";
+      }
+
+      function sil(genelNegatiflerId, silinecekId) {
+        var genelNegatiflerTextarea =
+          document.getElementById(genelNegatiflerId);
+        var silinecekTextarea = document.getElementById(silinecekId);
+        var silinecekNegatif = silinecekTextarea.value.trim();
+        var negatifler = genelNegatiflerTextarea.value.split("\n");
+
+        if (!negatifler.includes(silinecekNegatif)) {
+          alert("Silmek istediğiniz kelime listede bulunmamaktadır!");
+          return;
+        }
+
+        var yeniNegatifler = negatifler.filter(function (negatif) {
+          return negatif.trim() !== silinecekNegatif;
+        });
+        genelNegatiflerTextarea.value = yeniNegatifler.join("\n");
+        silinecekTextarea.value = "";
+      }
+    </script>
+
+    <script>
+      function kopyala(elementId) {
+        var textarea = document.getElementById(elementId);
+        textarea.select();
+        document.execCommand("copy");
+      }
+    </script>
     <!--0.5535 -0.9254 0.9254 0.5535-->
     <!--3.818398e-02 -0.9993 0.9993 3.818398e-02-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
