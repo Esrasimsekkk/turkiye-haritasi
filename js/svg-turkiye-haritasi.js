@@ -1428,7 +1428,7 @@ function svgturkiyeharitasi() {
 
   const ozelIlceRenkleri = {
     "#c3bc80": [
-      "edremit-balikesir",
+      "bEdremit",
       "bandirma",
       "erdek",
       "susurluk",
