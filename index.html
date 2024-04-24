@@ -24256,51 +24256,51 @@
       </div>
     </div>
 
-      <script>
-        function ekle(genelNegatiflerId, eklenecekId) {
-          var genelNegatiflerTextarea =
-            document.getElementById(genelNegatiflerId);
-          var eklenecekTextarea = document.getElementById(eklenecekId);
-          var yeniNegatif = eklenecekTextarea.value.trim();
-  
-          if (yeniNegatif !== "") {
-            if (genelNegatiflerTextarea.value !== "") {
-              genelNegatiflerTextarea.value += "\n" + yeniNegatif;
-            } else {
-              genelNegatiflerTextarea.value += yeniNegatif;
-            }
+    <script>
+      function ekle(genelNegatiflerId, eklenecekId) {
+        var genelNegatiflerTextarea =
+          document.getElementById(genelNegatiflerId);
+        var eklenecekTextarea = document.getElementById(eklenecekId);
+        var yeniNegatif = eklenecekTextarea.value.trim();
+
+        if (yeniNegatif !== "") {
+          if (genelNegatiflerTextarea.value !== "") {
+            genelNegatiflerTextarea.value += "\n" + yeniNegatif;
+          } else {
+            genelNegatiflerTextarea.value += yeniNegatif;
           }
-  
-          eklenecekTextarea.value = "";
         }
-  
-        function sil(genelNegatiflerId, silinecekId) {
-          var genelNegatiflerTextarea =
-            document.getElementById(genelNegatiflerId);
-          var silinecekTextarea = document.getElementById(silinecekId);
-          var silinecekNegatif = silinecekTextarea.value.trim();
-          var negatifler = genelNegatiflerTextarea.value.split("\n");
-  
-          if (!negatifler.includes(silinecekNegatif)) {
-            alert("Silmek istediğiniz kelime listede bulunmamaktadır!");
-            return;
-          }
-  
-          var yeniNegatifler = negatifler.filter(function (negatif) {
-            return negatif.trim() !== silinecekNegatif;
-          });
-          genelNegatiflerTextarea.value = yeniNegatifler.join("\n");
-          silinecekTextarea.value = "";
+
+        eklenecekTextarea.value = "";
+      }
+
+      function sil(genelNegatiflerId, silinecekId) {
+        var genelNegatiflerTextarea =
+          document.getElementById(genelNegatiflerId);
+        var silinecekTextarea = document.getElementById(silinecekId);
+        var silinecekNegatif = silinecekTextarea.value.trim();
+        var negatifler = genelNegatiflerTextarea.value.split("\n");
+
+        if (!negatifler.includes(silinecekNegatif)) {
+          alert("Silmek istediğiniz kelime listede bulunmamaktadır!");
+          return;
         }
-      </script>
-  
-      <script>
-        function kopyala(elementId) {
-          var textarea = document.getElementById(elementId);
-          textarea.select();
-          document.execCommand("copy");
-        }
-      </script>
+
+        var yeniNegatifler = negatifler.filter(function (negatif) {
+          return negatif.trim() !== silinecekNegatif;
+        });
+        genelNegatiflerTextarea.value = yeniNegatifler.join("\n");
+        silinecekTextarea.value = "";
+      }
+    </script>
+
+    <script>
+      function kopyala(elementId) {
+        var textarea = document.getElementById(elementId);
+        textarea.select();
+        document.execCommand("copy");
+      }
+    </script>
     <!--0.5535 -0.9254 0.9254 0.5535-->
     <!--3.818398e-02 -0.9993 0.9993 3.818398e-02-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

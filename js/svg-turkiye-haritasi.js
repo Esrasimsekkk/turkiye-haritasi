@@ -1502,6 +1502,7 @@ function svgturkiyeharitasi() {
       "niksan",
     ],
     "#de9b00": [
+      "kas",
       "gelibolu",
       "biga",
       "can",
@@ -1626,110 +1627,96 @@ function svgturkiyeharitasi() {
     .getElementById("geri-butonu")
     .addEventListener("click", clickGeriButon);
 
-    function getIlceDetay() {
-      // Secili ilceler setinden bir dizi oluştur
-      const seciliIlceArray = Array.from(seciliIlceler);
-      console.log(seciliIlceArray);
-      // Ajax isteği yap
-      const xhr = new XMLHttpRequest();
-      const url = "config/db_config.php";
-      xhr.open("POST", url, true);
-      xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.onreadystatechange = function () {
-          try {
-              if (xhr.readyState === 4 && xhr.status === 200) {
-                  const ilceDetaylari = JSON.parse(xhr.responseText);
-  
-                  // Gelen verileri işle veya göster
-                  console.log(ilceDetaylari);
-  
-                  // Pozitif ve negatif ilçeleri ayrı ayrı al
-                  const positifIlceler = ilceDetaylari.positif;
-                  const negatifIlceler = ilceDetaylari.negatif;
-  
-  
-                  // Pozitif ve negatif illeri saklamak için bir dize oluştur
-                  let pozitifIller = "";
-                  let negatifIller = "";
-  
-                  // Pozitif ve negatif illeri ve ilçeleri textarea'lara yerleştir
-                  const pozitifIlcelerTextarea = document.getElementById("pozitif_ilce");
-                  const negatifIlcelerTextarea = document.getElementById("negatif_ilce");
-                  const pozitifIllerTextarea = document.getElementById("pozitif_il");
-                  const negatifIllerTextarea = document.getElementById("negatif_il");
-  
-                  // Text alanlarını temizle
-                  pozitifIlcelerTextarea.value = "";
-                  negatifIlcelerTextarea.value = "";
-                  pozitifIllerTextarea.value = "";
-                  negatifIllerTextarea.value = "";
-  
-                  let pozitifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
-                  let negatifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
-  
-  
-                  positifIlceler.forEach(item => {
-                    // İl detaylarını virgüllerle ayrılmış kelimelere ayır
-                    const ilDetayKelimeleri = item.il_detay.split(',');
-                
-                    // İl detaylarını Set'e ekle (tek seferde)
-                      ilDetayKelimeleri.forEach(kelime => {
-                        pozitifIllerSet.add(kelime.trim());
-                    });
-                
-                    // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
-                    const ilceDetayKelimeleri = item.ilce_detay.split(',');
-                    ilceDetayKelimeleri.forEach(kelime => {
-                        pozitifIlcelerTextarea.value += kelime.trim() + "\n";
-                    });
-                  });
-                                  // Pozitif illeri textarea'ya ekle
-                  pozitifIllerSet.forEach(il => {
-                    pozitifIller += il + "\n";
-                  });
-                  pozitifIllerTextarea.value = pozitifIller;
-                  
-  
-  
-                  negatifIlceler.forEach(item => {
-                    // İl detaylarını virgüllerle ayrılmış kelimelere ayır
-                    const ilDetayKelimeleri = item.il_detay.split(',');
-                
-                    // İl detaylarını Set'e ekle (tek seferde)
-                    ilDetayKelimeleri.forEach(kelime => {
-                      negatifIllerSet.add(kelime.trim());
-                    });
-                
-                    // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
-                    const ilceDetayKelimeleri = item.ilce_detay.split(',');
-                    ilceDetayKelimeleri.forEach(kelime => {
-                        negatifIlcelerTextarea.value += kelime.trim() + "\n";
-                    });
-                });
-  
-                  // Negatif illeri textarea'ya ekle
-                  negatifIllerSet.forEach(il => {
-                    negatifIller += il + "\n";
-                  });
-                  negatifIllerTextarea.value = negatifIller;
-  
-              }
-          } catch (error) {
-              console.log('Error parsing JSON:', error);
-          }
-      };
-      const data = JSON.stringify({ ilceler: seciliIlceArray });
-      xhr.send(data);
+  function getIlceDetay() {
+    // Secili ilceler setinden bir dizi oluştur
+    const seciliIlceArray = Array.from(seciliIlceler);
+    console.log(seciliIlceArray);
+    // Ajax isteği yap
+    const xhr = new XMLHttpRequest();
+    const url = "config/db_config.php";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+      try {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const ilceDetaylari = JSON.parse(xhr.responseText);
+
+          // Gelen verileri işle veya göster
+          console.log(ilceDetaylari);
+
+          // Pozitif ve negatif ilçeleri ayrı ayrı al
+          const positifIlceler = ilceDetaylari.positif;
+          const negatifIlceler = ilceDetaylari.negatif;
+
+          // Pozitif ve negatif illeri saklamak için bir dize oluştur
+          let pozitifIller = "";
+          let negatifIller = "";
+
+          // Pozitif ve negatif illeri ve ilçeleri textarea'lara yerleştir
+          const pozitifIlcelerTextarea =
+            document.getElementById("pozitif_ilce");
+          const negatifIlcelerTextarea =
+            document.getElementById("negatif_ilce");
+          const pozitifIllerTextarea = document.getElementById("pozitif_il");
+          const negatifIllerTextarea = document.getElementById("negatif_il");
+
+          // Text alanlarını temizle
+          pozitifIlcelerTextarea.value = "";
+          negatifIlcelerTextarea.value = "";
+          pozitifIllerTextarea.value = "";
+          negatifIllerTextarea.value = "";
+
+          let pozitifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
+          let negatifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
+
+          positifIlceler.forEach((item) => {
+            // İl detaylarını virgüllerle ayrılmış kelimelere ayır
+            const ilDetayKelimeleri = item.il_detay.split(",");
+
+            // İl detaylarını Set'e ekle (tek seferde)
+            ilDetayKelimeleri.forEach((kelime) => {
+              pozitifIllerSet.add(kelime.trim());
+            });
+
+            // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
+            const ilceDetayKelimeleri = item.ilce_detay.split(",");
+            ilceDetayKelimeleri.forEach((kelime) => {
+              pozitifIlcelerTextarea.value += kelime.trim() + "\n";
+            });
+          });
+          // Pozitif illeri textarea'ya ekle
+          pozitifIllerSet.forEach((il) => {
+            pozitifIller += il + "\n";
+          });
+          pozitifIllerTextarea.value = pozitifIller;
+
+          negatifIlceler.forEach((item) => {
+            // İl detaylarını virgüllerle ayrılmış kelimelere ayır
+            const ilDetayKelimeleri = item.il_detay.split(",");
+
+            // İl detaylarını Set'e ekle (tek seferde)
+            ilDetayKelimeleri.forEach((kelime) => {
+              negatifIllerSet.add(kelime.trim());
+            });
+
+            // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
+            const ilceDetayKelimeleri = item.ilce_detay.split(",");
+            ilceDetayKelimeleri.forEach((kelime) => {
+              negatifIlcelerTextarea.value += kelime.trim() + "\n";
+            });
+          });
+
+          // Negatif illeri textarea'ya ekle
+          negatifIllerSet.forEach((il) => {
+            negatifIller += il + "\n";
+          });
+          negatifIllerTextarea.value = negatifIller;
+        }
+      } catch (error) {
+        console.log("Error parsing JSON:", error);
+      }
+    };
+    const data = JSON.stringify({ ilceler: seciliIlceArray });
+    xhr.send(data);
   }
-  
-  
-  
-  
-  }
-
-
-
-
-    
-
-
+}
