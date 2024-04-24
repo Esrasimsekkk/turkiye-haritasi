@@ -45,7 +45,6 @@ function svgturkiyeharitasi() {
       zoom = true;
       showGeriButon();
 
-
       const bbox = ilPath.getBBox();
       const padding = 380;
       const viewBoxValue = [
@@ -1229,8 +1228,7 @@ function svgturkiyeharitasi() {
             if (isOzelIlce(ilceID)) {
               unselectOzelIlceTek(ilceID);
               seciliIlceler.delete(ilceID);
-              
-            }else{
+            } else {
               unselectIlceTek(ilceID);
               seciliIlceler.delete(ilceID); // İlçeyi listeden sil
             }
@@ -1251,7 +1249,6 @@ function svgturkiyeharitasi() {
           }
         }
         getIlceDetay();
-        
       });
     }
     ilcePath.addEventListener("click", function (event) {
@@ -1435,7 +1432,7 @@ function svgturkiyeharitasi() {
       "bandirma",
       "erdek",
       "susurluk",
-      "gonen-balikesir",
+      "bGonen",
       "ayvalik",
       "luleburgaz",
       "amasra",
@@ -1450,7 +1447,6 @@ function svgturkiyeharitasi() {
       "mudanya",
       "mustafakemalpasa",
       "nilufer",
-      "osmangazi",
       "gemlik",
       "gursu",
       "kestel",
@@ -1563,6 +1559,7 @@ function svgturkiyeharitasi() {
       "akcakoca",
     ],
     "#a59b7e": [
+      "safranbolu",
       "bodrum",
       "datca",
       "milas",
@@ -1629,8 +1626,6 @@ function svgturkiyeharitasi() {
     .getElementById("geri-butonu")
     .addEventListener("click", clickGeriButon);
 
-  
-
   function getIlceDetay() {
     // Secili ilceler setinden bir dizi oluştur
     const seciliIlceArray = Array.from(seciliIlceler);
@@ -1641,27 +1636,28 @@ function svgturkiyeharitasi() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
-        try {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                const ilceDetaylari = JSON.parse(xhr.responseText);
+      try {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const ilceDetaylari = JSON.parse(xhr.responseText);
 
-                // Gelen verileri işle veya göster
-                console.log(ilceDetaylari);
+          // Gelen verileri işle veya göster
+          console.log(ilceDetaylari);
 
-                // Pozitif ve negatif ilçeleri ayrı ayrı al
-                const positifIlceler = ilceDetaylari.positif;
-                const negatifIlceler = ilceDetaylari.negatif;
+          // Pozitif ve negatif ilçeleri ayrı ayrı al
+          const positifIlceler = ilceDetaylari.positif;
+          const negatifIlceler = ilceDetaylari.negatif;
 
+          // Pozitif ve negatif illeri saklamak için bir dize oluştur
+          let pozitifIller = "";
+          let negatifIller = "";
 
-                // Pozitif ve negatif illeri saklamak için bir dize oluştur
-                let pozitifIller = "";
-                let negatifIller = "";
-
-                // Pozitif ve negatif illeri ve ilçeleri textarea'lara yerleştir
-                const pozitifIlcelerTextarea = document.getElementById("pozitif_ilce");
-                const negatifIlcelerTextarea = document.getElementById("negatif_ilce");
-                const pozitifIllerTextarea = document.getElementById("pozitif_il");
-                const negatifIllerTextarea = document.getElementById("negatif_il");
+          // Pozitif ve negatif illeri ve ilçeleri textarea'lara yerleştir
+          const pozitifIlcelerTextarea =
+            document.getElementById("pozitif_ilce");
+          const negatifIlcelerTextarea =
+            document.getElementById("negatif_ilce");
+          const pozitifIllerTextarea = document.getElementById("pozitif_il");
+          const negatifIllerTextarea = document.getElementById("negatif_il");
 
                 // Text alanlarını temizle
                 pozitifIlcelerTextarea.value = "";
@@ -1669,55 +1665,21 @@ function svgturkiyeharitasi() {
                 pozitifIllerTextarea.value = "";
                 negatifIllerTextarea.value = "";
 
-                let pozitifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
-                let negatifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
-
-
                 positifIlceler.forEach(item => {
-                  // İl detaylarını virgüllerle ayrılmış kelimelere ayır
-                  const ilDetayKelimeleri = item.il_detay.split(',');
-              
-                  // İl detaylarını Set'e ekle (tek seferde)
-                    ilDetayKelimeleri.forEach(kelime => {
-                      pozitifIllerSet.add(kelime.trim());
-                  });
-              
-                  // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
-                  const ilceDetayKelimeleri = item.ilce_detay.split(',');
-                  ilceDetayKelimeleri.forEach(kelime => {
-                      pozitifIlcelerTextarea.value += kelime.trim() + "\n";
-                  });
+                    // İl detaylarını dizeye ekle (tek seferde)
+                    pozitifIller = item.il_detay + "\n";
+                    pozitifIlcelerTextarea.value += item.ilce_detay + "\n";
                 });
-                                // Pozitif illeri textarea'ya ekle
-                pozitifIllerSet.forEach(il => {
-                  pozitifIller += il + "\n";
-                });
-                pozitifIllerTextarea.value = pozitifIller;
-                
-
 
                 negatifIlceler.forEach(item => {
-                  // İl detaylarını virgüllerle ayrılmış kelimelere ayır
-                  const ilDetayKelimeleri = item.il_detay.split(',');
-              
-                  // İl detaylarını Set'e ekle (tek seferde)
-                  ilDetayKelimeleri.forEach(kelime => {
-                    negatifIllerSet.add(kelime.trim());
-                  });
-              
-                  // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
-                  const ilceDetayKelimeleri = item.ilce_detay.split(',');
-                  ilceDetayKelimeleri.forEach(kelime => {
-                      negatifIlcelerTextarea.value += kelime.trim() + "\n";
-                  });
-              });
-
-                // Negatif illeri textarea'ya ekle
-                negatifIllerSet.forEach(il => {
-                  negatifIller += il + "\n";
+                    // İl detaylarını dizeye ekle (tek seferde)
+                    negatifIller = item.il_detay + "\n";
+                    negatifIlcelerTextarea.value += item.ilce_detay + "\n";
                 });
-                negatifIllerTextarea.value = negatifIller;
 
+                // İlgili textarea'lara dizeyi yerleştir
+                pozitifIllerTextarea.value = pozitifIller;
+                negatifIllerTextarea.value = negatifIller;
             }
         } catch (error) {
             console.log('Error parsing JSON:', error);
@@ -1726,6 +1688,8 @@ function svgturkiyeharitasi() {
     const data = JSON.stringify({ ilceler: seciliIlceArray });
     xhr.send(data);
 }
+
+
 
 
 
