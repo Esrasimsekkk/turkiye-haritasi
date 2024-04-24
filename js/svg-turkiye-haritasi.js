@@ -1669,21 +1669,55 @@ function svgturkiyeharitasi() {
                 pozitifIllerTextarea.value = "";
                 negatifIllerTextarea.value = "";
 
+                let pozitifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
+                let negatifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
+
+
                 positifIlceler.forEach(item => {
-                    // İl detaylarını dizeye ekle (tek seferde)
-                    pozitifIller = item.il_detay + "\n";
-                    pozitifIlcelerTextarea.value += item.ilce_detay + "\n";
+                  // İl detaylarını virgüllerle ayrılmış kelimelere ayır
+                  const ilDetayKelimeleri = item.il_detay.split(',');
+              
+                  // İl detaylarını Set'e ekle (tek seferde)
+                    ilDetayKelimeleri.forEach(kelime => {
+                      pozitifIllerSet.add(kelime.trim());
+                  });
+              
+                  // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
+                  const ilceDetayKelimeleri = item.ilce_detay.split(',');
+                  ilceDetayKelimeleri.forEach(kelime => {
+                      pozitifIlcelerTextarea.value += kelime.trim() + "\n";
+                  });
                 });
+                                // Pozitif illeri textarea'ya ekle
+                pozitifIllerSet.forEach(il => {
+                  pozitifIller += il + "\n";
+                });
+                pozitifIllerTextarea.value = pozitifIller;
+                
+
 
                 negatifIlceler.forEach(item => {
-                    // İl detaylarını dizeye ekle (tek seferde)
-                    negatifIller = item.il_detay + "\n";
-                    negatifIlcelerTextarea.value += item.ilce_detay + "\n";
-                });
+                  // İl detaylarını virgüllerle ayrılmış kelimelere ayır
+                  const ilDetayKelimeleri = item.il_detay.split(',');
+              
+                  // İl detaylarını Set'e ekle (tek seferde)
+                  ilDetayKelimeleri.forEach(kelime => {
+                    negatifIllerSet.add(kelime.trim());
+                  });
+              
+                  // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
+                  const ilceDetayKelimeleri = item.ilce_detay.split(',');
+                  ilceDetayKelimeleri.forEach(kelime => {
+                      negatifIlcelerTextarea.value += kelime.trim() + "\n";
+                  });
+              });
 
-                // İlgili textarea'lara dizeyi yerleştir
-                pozitifIllerTextarea.value = pozitifIller;
+                // Negatif illeri textarea'ya ekle
+                negatifIllerSet.forEach(il => {
+                  negatifIller += il + "\n";
+                });
                 negatifIllerTextarea.value = negatifIller;
+
             }
         } catch (error) {
             console.log('Error parsing JSON:', error);
@@ -1692,8 +1726,6 @@ function svgturkiyeharitasi() {
     const data = JSON.stringify({ ilceler: seciliIlceArray });
     xhr.send(data);
 }
-
-
 
 
 
