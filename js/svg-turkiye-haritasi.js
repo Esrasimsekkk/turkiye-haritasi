@@ -2,7 +2,59 @@
 
 function svgturkiyeharitasi() {
   const element = document.querySelector("#svg-turkiye-haritasi ");
-  const info = document.querySelector(".il-isimleri");
+  const haritaContainer = document.getElementById("harita-container");
+  let isMiddleMouseDown = false;
+  let lastMouseX, lastMouseY;
+
+  haritaContainer.addEventListener("mousedown", function (event) {
+    if (event.button === 1) {
+      // Orta fare düğmesi tıklandığında
+      isMiddleMouseDown = true;
+      lastMouseX = event.clientX;
+      lastMouseY = event.clientY;
+      event.preventDefault();
+    }
+  });
+  haritaContainer.addEventListener("mouseup", function (event) {
+    if (event.button === 1) {
+      // Orta fare düğmesi bırakıldığında
+      isMiddleMouseDown = false;
+      event.preventDefault();
+    }
+  });
+  haritaContainer.addEventListener("mousemove", function (event) {
+    if (isMiddleMouseDown) {
+      // Orta fare tıklıyken fare hareket ederse
+      event.preventDefault();
+      const deltaX = event.clientX - lastMouseX;
+      const deltaY = event.clientY - lastMouseY;
+
+      const viewBox = svgHaritasi.getAttribute("viewBox").split(" ");
+      const viewBoxX = parseFloat(viewBox[0]);
+      const viewBoxY = parseFloat(viewBox[1]);
+      const viewBoxWidth = parseFloat(viewBox[2]);
+      const viewBoxHeight = parseFloat(viewBox[3]);
+
+      const newViewBoxX =
+        viewBoxX - (deltaX * viewBoxWidth) / haritaContainer.offsetWidth;
+      const newViewBoxY =
+        viewBoxY - (deltaY * viewBoxHeight) / haritaContainer.offsetHeight;
+
+      svgHaritasi.setAttribute(
+        "viewBox",
+        newViewBoxX +
+          " " +
+          newViewBoxY +
+          " " +
+          viewBoxWidth +
+          " " +
+          viewBoxHeight
+      );
+
+      lastMouseX = event.clientX;
+      lastMouseY = event.clientY;
+    }
+  });
 
   element.addEventListener("mouseover", function (event) {
     if (
@@ -1199,6 +1251,16 @@ function svgturkiyeharitasi() {
       ].join(" ");
       svgHaritasi.setAttribute("viewBox", viewBoxValue);
     }
+    if (ilID === "tumTuerkiye") {
+      const padding = 50; // İstenen kenar boşlukları için bir padding değeri ayarlayabilirsiniz
+      const viewBoxValue = [
+        -padding,
+        -padding,
+        1000 + padding * 2,
+        1000 + padding * 2,
+      ].join(" ");
+      svgHaritasi.setAttribute("viewBox", viewBoxValue);
+    }
   }
 
   // Seçili ilçelerin ID'lerini saklamak için bir Set kullanıyoruz
@@ -1493,7 +1555,7 @@ function svgturkiyeharitasi() {
       "demirci",
       "kizilcahamam",
       "pursuklar",
-      "golbasi",
+      "anGolbasi",
       "polatli",
       "eregli",
       "caycuma",

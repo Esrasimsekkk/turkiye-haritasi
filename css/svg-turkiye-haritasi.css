@@ -212,3 +212,9 @@ div.modal-body {
   margin-bottom: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+
+#harita-container {
+  width: 100%; /* İstediğiniz genişliği verebilirsiniz */
+  height: 90%; /* İstediğiniz yüksekliği verebilirsiniz */
+  overflow: auto;
+}
