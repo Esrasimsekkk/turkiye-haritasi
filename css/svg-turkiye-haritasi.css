@@ -35,6 +35,7 @@ body {
   cursor: pointer;
   fill: #80ef8d;
 }
+
 #svg-turkiye-haritasi .green g .ozel {
   cursor: pointer;
   fill: #58ba64;
@@ -124,7 +125,7 @@ body {
   pointer-events: none;
 }
 #svg-turkiye-haritasi #s path {
-  fill: #ffff;
+  fill: #9cd8e3;
   pointer-events: none;
 }
 
