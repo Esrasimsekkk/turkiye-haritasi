@@ -2,11 +2,12 @@
 
 function svgturkiyeharitasi() {
   const element = document.querySelector("#svg-turkiye-haritasi ");
+  const info = document.querySelector('.il-isimleri');
   const haritaContainer = document.getElementById("harita-container");
   let isMiddleMouseDown = false;
   let lastMouseX, lastMouseY;
 
-  haritaContainer.addEventListener("mousedown", function (event) {
+  element.addEventListener("mousedown", function (event) {
     if (event.button === 1) {
       // Orta fare düğmesi tıklandığında
       isMiddleMouseDown = true;
@@ -15,14 +16,14 @@ function svgturkiyeharitasi() {
       event.preventDefault();
     }
   });
-  haritaContainer.addEventListener("mouseup", function (event) {
+  element.addEventListener("mouseup", function (event) {
     if (event.button === 1) {
       // Orta fare düğmesi bırakıldığında
       isMiddleMouseDown = false;
       event.preventDefault();
     }
   });
-  haritaContainer.addEventListener("mousemove", function (event) {
+  element.addEventListener("mousemove", function (event) {
     if (isMiddleMouseDown) {
       // Orta fare tıklıyken fare hareket ederse
       event.preventDefault();
@@ -84,7 +85,6 @@ function svgturkiyeharitasi() {
   });
 
   const svgHaritasi = document.getElementById("svg-turkiye-haritasi");
-
   // Tüm ilçelerin path elementlerini seçmek için querySelectorAll kullanılır
   const ilcePaths = svgHaritasi.querySelectorAll(".il");
 
