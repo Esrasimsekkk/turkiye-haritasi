@@ -5,6 +5,12 @@ $username = 'adrestas';
 $password = 'ty575AG0?ym!';
 $database = 'adrestas_map';
 
+/*
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'turkiye_haritasi';
+*/
 
 // Veritabanı bağlantısını oluşturalım
 $conn = new mysqli($host, $username, $password, $database);
@@ -48,7 +54,7 @@ $resultPositif = $conn->query($sqlPositif);
 
 if ($resultPositif->num_rows > 0) {
     while ($row = $resultPositif->fetch_assoc()) {
-        $ilceDetaylari['positif'][] = array(
+        $ilceDetaylari['pozitif'][] = array(
             'ilce_detay' => $row['ilce_detay'],
             'il_detay' => $row['il_detay']
         );

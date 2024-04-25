@@ -1701,13 +1701,13 @@ function svgturkiyeharitasi() {
     xhr.onreadystatechange = function () {
       try {
         if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log(xhr.responseText);
           const ilceDetaylari = JSON.parse(xhr.responseText);
-
           // Gelen verileri işle veya göster
           console.log(ilceDetaylari);
 
           // Pozitif ve negatif ilçeleri ayrı ayrı al
-          const positifIlceler = ilceDetaylari.positif;
+          const positifIlceler = ilceDetaylari.pozitif;
           const negatifIlceler = ilceDetaylari.negatif;
 
           // Pozitif ve negatif illeri saklamak için bir dize oluştur
