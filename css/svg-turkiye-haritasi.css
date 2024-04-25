@@ -226,9 +226,3 @@ div.modal-body {
   height: 90%; /* İstediğiniz yüksekliği verebilirsiniz */
   overflow: auto;
 }
-
-@media (max-width: 992px) {
-  .row {
-    flex-direction: column;
-  }
-}

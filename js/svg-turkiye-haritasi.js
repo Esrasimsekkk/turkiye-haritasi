@@ -4,28 +4,30 @@ function svgturkiyeharitasi() {
   const element = document.querySelector("#svg-turkiye-haritasi ");
   const info = document.querySelector(".il-isimleri");
   const haritaContainer = document.getElementById("harita-container");
-  let isMiddleMouseDown = false;
+  let isRightMouseDown = false;
   let lastMouseX, lastMouseY;
 
-  element.addEventListener("mousedown", function (event) {
-    if (event.button === 1) {
-      // Orta fare düğmesi tıklandığında
-      isMiddleMouseDown = true;
+  // Fare olaylarını dinleme
+  haritaContainer.addEventListener("mousedown", function (event) {
+    if (event.button === 2) {
+      // Sağ fare düğmesi (2) tıklandığında
+      isRightMouseDown = true;
       lastMouseX = event.clientX;
       lastMouseY = event.clientY;
       event.preventDefault();
     }
   });
-  element.addEventListener("mouseup", function (event) {
-    if (event.button === 1) {
-      // Orta fare düğmesi bırakıldığında
-      isMiddleMouseDown = false;
+
+  haritaContainer.addEventListener("mouseup", function (event) {
+    if (event.button === 2) {
+      // Sağ fare düğmesi (2) bırakıldığında
+      isRightMouseDown = false;
       event.preventDefault();
     }
   });
-  element.addEventListener("mousemove", function (event) {
-    if (isMiddleMouseDown) {
-      // Orta fare tıklıyken fare hareket ederse
+  haritaContainer.addEventListener("mousemove", function (event) {
+    if (isRightMouseDown) {
+      // Sağ fare tıklıyken fare hareket ederse
       event.preventDefault();
       const deltaX = event.clientX - lastMouseX;
       const deltaY = event.clientY - lastMouseY;
@@ -55,6 +57,11 @@ function svgturkiyeharitasi() {
       lastMouseX = event.clientX;
       lastMouseY = event.clientY;
     }
+  });
+
+  // Sağ tık menüsünü devre dışı bırakma
+  haritaContainer.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
   });
 
   element.addEventListener("mouseover", function (event) {
