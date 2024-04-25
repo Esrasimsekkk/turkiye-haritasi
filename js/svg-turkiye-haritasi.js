@@ -1692,7 +1692,7 @@ function svgturkiyeharitasi() {
   function getIlceDetay() {
     // Secili ilceler setinden bir dizi oluştur
     const seciliIlceArray = Array.from(seciliIlceler);
-    console.log(seciliIlceArray);
+    //console.log(seciliIlceArray);
     // Ajax isteği yap
     const xhr = new XMLHttpRequest();
     const url = "config/db_config.php";
@@ -1775,7 +1775,9 @@ function svgturkiyeharitasi() {
           negatifIllerTextarea.value = negatifIller;
         }
       } catch (error) {
-        console.log("Error parsing JSON:", error);
+        console.error("Hata oluştu:", error);
+        console.error("xhr durumu:", xhr.readyState);
+        console.error("xhr durumu:", xhr.status);
       }
     };
     const data = JSON.stringify({ ilceler: seciliIlceArray });
