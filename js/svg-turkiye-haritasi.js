@@ -2,7 +2,7 @@
 
 function svgturkiyeharitasi() {
   const element = document.querySelector("#svg-turkiye-haritasi ");
-  const info = document.querySelector('.il-isimleri');
+  const info = document.querySelector(".il-isimleri");
   const haritaContainer = document.getElementById("harita-container");
   let isMiddleMouseDown = false;
   let lastMouseX, lastMouseY;
@@ -1533,7 +1533,7 @@ function svgturkiyeharitasi() {
       "aksehir",
       "beysehir",
       "seydisehir",
-      "eregli",
+      "kEregli",
       "sorgun",
       "bafra",
       "terme",
