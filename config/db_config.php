@@ -1,9 +1,10 @@
 <?php
 // Veritabanı bağlantısı için gerekli bilgileri tanımlayalım
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'turkiye_haritasi';
+$host = 'adresgezginitasarim.com';
+$username = 'adrestas';
+$password = 'ty575AG0?ym!';
+$database = 'adrestas_map';
+
 
 // Veritabanı bağlantısını oluşturalım
 $conn = new mysqli($host, $username, $password, $database);
@@ -12,6 +13,8 @@ $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
     die("Veritabanı bağlantı hatası: " . $conn->connect_error);
 }
+
+
 
 // POST isteğinden ilçe isimlerini al
 $ilceler = json_decode(file_get_contents("php://input"), true);
@@ -22,6 +25,8 @@ foreach ($ilceler['ilceler'] as $ilce) {
 }
 
 $ilceListesi = "'" . implode("','", $flattenedArray) . "'";
+
+
 
 // Seçili ilçelerin detaylarını almak için SQL sorgusu
 $sqlPositif = "SELECT ilceler.ilce_detay, iller.il_detay
@@ -61,7 +66,7 @@ if ($resultNegatif->num_rows > 0) {
         );
     }
 }
-
+//var_dump($ilceDetaylari);
 // Sonuçları JSON formatında geri döndür
 echo json_encode($ilceDetaylari);
 
