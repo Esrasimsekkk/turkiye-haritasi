@@ -1258,16 +1258,6 @@ function svgturkiyeharitasi() {
       ].join(" ");
       svgHaritasi.setAttribute("viewBox", viewBoxValue);
     }
-    if (ilID === "tumTuerkiye") {
-      const padding = 50; // İstenen kenar boşlukları için bir padding değeri ayarlayabilirsiniz
-      const viewBoxValue = [
-        -padding,
-        -padding,
-        1000 + padding * 2,
-        1000 + padding * 2,
-      ].join(" ");
-      svgHaritasi.setAttribute("viewBox", viewBoxValue);
-    }
   }
 
   // Seçili ilçelerin ID'lerini saklamak için bir Set kullanıyoruz
