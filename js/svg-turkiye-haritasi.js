@@ -7,8 +7,11 @@ function svgturkiyeharitasi() {
   let isRightMouseDown = false;
   let lastMouseX, lastMouseY;
 
+  
   // Fare olaylarını dinleme
   haritaContainer.addEventListener("mousedown", function (event) {
+    if (svgHaritasi.getAttribute("viewBox") != "0 0 4749 2214") {
+      
     if (event.button === 2) {
       // Sağ fare düğmesi (2) tıklandığında
       isRightMouseDown = true;
@@ -16,47 +19,54 @@ function svgturkiyeharitasi() {
       lastMouseY = event.clientY;
       event.preventDefault();
     }
+  } 
   });
 
   haritaContainer.addEventListener("mouseup", function (event) {
-    if (event.button === 2) {
-      // Sağ fare düğmesi (2) bırakıldığında
-      isRightMouseDown = false;
-      event.preventDefault();
-    }
+    if (svgHaritasi.getAttribute("viewBox") != "0 0 4749 2214") {
+      if (event.button === 2) {
+        // Sağ fare düğmesi (2) bırakıldığında
+        isRightMouseDown = false;
+        event.preventDefault();
+      }
+  }
   });
   haritaContainer.addEventListener("mousemove", function (event) {
-    if (isRightMouseDown) {
-      // Sağ fare tıklıyken fare hareket ederse
-      event.preventDefault();
-      const deltaX = event.clientX - lastMouseX;
-      const deltaY = event.clientY - lastMouseY;
-
-      const viewBox = svgHaritasi.getAttribute("viewBox").split(" ");
-      const viewBoxX = parseFloat(viewBox[0]);
-      const viewBoxY = parseFloat(viewBox[1]);
-      const viewBoxWidth = parseFloat(viewBox[2]);
-      const viewBoxHeight = parseFloat(viewBox[3]);
-
-      const newViewBoxX =
-        viewBoxX - (deltaX * viewBoxWidth) / haritaContainer.offsetWidth;
-      const newViewBoxY =
-        viewBoxY - (deltaY * viewBoxHeight) / haritaContainer.offsetHeight;
-
-      svgHaritasi.setAttribute(
-        "viewBox",
-        newViewBoxX +
-          " " +
-          newViewBoxY +
-          " " +
-          viewBoxWidth +
-          " " +
-          viewBoxHeight
-      );
-
-      lastMouseX = event.clientX;
-      lastMouseY = event.clientY;
-    }
+    if (svgHaritasi.getAttribute("viewBox") != "0 0 4749 2214") {
+      // Eğer viewBox değeri belirtilen değerlere eşitse yapılacak işlemler buraya yazılır
+      if (isRightMouseDown) {
+        // Sağ fare tıklıyken fare hareket ederse
+        event.preventDefault();
+        const deltaX = event.clientX - lastMouseX;
+        const deltaY = event.clientY - lastMouseY;
+  
+        const viewBox = svgHaritasi.getAttribute("viewBox").split(" ");
+        const viewBoxX = parseFloat(viewBox[0]);
+        const viewBoxY = parseFloat(viewBox[1]);
+        const viewBoxWidth = parseFloat(viewBox[2]);
+        const viewBoxHeight = parseFloat(viewBox[3]);
+  
+        const newViewBoxX =
+          viewBoxX - (deltaX * viewBoxWidth) / haritaContainer.offsetWidth;
+        const newViewBoxY =
+          viewBoxY - (deltaY * viewBoxHeight) / haritaContainer.offsetHeight;
+  
+        svgHaritasi.setAttribute(
+          "viewBox",
+          newViewBoxX +
+            " " +
+            newViewBoxY +
+            " " +
+            viewBoxWidth +
+            " " +
+            viewBoxHeight
+        );
+  
+        lastMouseX = event.clientX;
+        lastMouseY = event.clientY;
+      }
+  } 
+    
   });
 
   // Sağ tık menüsünü devre dışı bırakma
@@ -78,6 +88,8 @@ function svgturkiyeharitasi() {
       ].join("");
     }
   });
+
+  
 
   element.addEventListener("mousemove", function (event) {
     if (event.target.parentNode.id === "kktc") {
@@ -1258,16 +1270,7 @@ function svgturkiyeharitasi() {
       ].join(" ");
       svgHaritasi.setAttribute("viewBox", viewBoxValue);
     }
-    if (ilID === "tumTuerkiye") {
-      const padding = 50; // İstenen kenar boşlukları için bir padding değeri ayarlayabilirsiniz
-      const viewBoxValue = [
-        -padding,
-        -padding,
-        1000 + padding * 2,
-        1000 + padding * 2,
-      ].join(" ");
-      svgHaritasi.setAttribute("viewBox", viewBoxValue);
-    }
+    
   }
 
   // Seçili ilçelerin ID'lerini saklamak için bir Set kullanıyoruz

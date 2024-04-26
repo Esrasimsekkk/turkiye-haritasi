@@ -5,6 +5,8 @@ $username = 'adrestas';
 $password = 'ty575AG0?ym!';
 $database = 'adrestas_map';
 
+header('Content-Type: text/html; charset=utf-8');
+
 /*
 $host = 'localhost';
 $username = 'root';
@@ -14,6 +16,7 @@ $database = 'turkiye_haritasi';
 
 // Veritabanı bağlantısını oluşturalım
 $conn = new mysqli($host, $username, $password, $database);
+$conn->set_charset("utf8");
 
 // Bağlantı hatası kontrolü
 if ($conn->connect_error) {
@@ -72,6 +75,8 @@ if ($resultNegatif->num_rows > 0) {
         );
     }
 }
+
+
 //var_dump($ilceDetaylari);
 // Sonuçları JSON formatında geri döndür
 echo json_encode($ilceDetaylari);
