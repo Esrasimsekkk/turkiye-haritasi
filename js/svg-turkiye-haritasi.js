@@ -1270,10 +1270,7 @@ function svgturkiyeharitasi() {
       ].join(" ");
       svgHaritasi.setAttribute("viewBox", viewBoxValue);
     }
-<<<<<<< HEAD
-=======
     
->>>>>>> yunus
   }
 
   // Seçili ilçelerin ID'lerini saklamak için bir Set kullanıyoruz
