@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4">
+        <select class="form-control mb-3" id="selectCity">
+          <option value="">Şehir Seçiniz</option>
+          <!-- Buraya şehirlerin dinamik olarak eklenmesi gerekecek -->
+          <option value="istanbul">İstanbul</option>
+          <option value="ankara">Ankara</option>
+          <!-- Diğer şehirler buraya eklenecek -->
+        </select>
+        <textarea class="form-control" rows="5" id="cityData" readonly></textarea>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control mb-3" id="selectDistrict">
+          <option value="">İlçe Seçiniz</option>
+          <!-- Buraya ilçelerin dinamik olarak eklenmesi gerekecek -->
+        </select>
+        <textarea class="form-control" rows="5" id="districtData" readonly></textarea>
+      </div>
+      <div class="col-md-4">
+        <textarea class="form-control" rows="5" id="neighborhoodData" readonly></textarea>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#selectCity').change(function() {
+        var city = $(this).val();
+        // İlçelerin dinamik olarak yüklenmesi için ajax kullanılabilir
+        // Örnek bir ajax isteği:
+        // $.ajax({
+        //   url: 'getDistricts.php',
+        //   type: 'GET',
+        //   data: { city: city },
+        //   success: function(response) {
+        //     $('#selectDistrict').html(response);
+        //   }
+        // });
+        // Şehre ait verilerin textarea'ya yazdırılması
+        $('#cityData').val("Seçilen Şehir: " + city + "\n\n" + "Şehre Ait Veriler Buraya Gelecek");
+      });
+
+      $('#selectDistrict').change(function() {
+        var district = $(this).val();
+        // İlçeye ait verilerin dinamik olarak yüklenmesi gerekecek
+        // Örnek bir ajax isteği:
+        // $.ajax({
+        //   url: 'getDistrictData.php',
+        //   type: 'GET',
+        //   data: { district: district },
+        //   success: function(response) {
+        //     $('#districtData').val(response);
+        //   }
+        // });
+        // İlçeye ait verilerin textarea'ya yazdırılması
+        $('#districtData').val("Seçilen İlçe: " + district + "\n\n" + "İlçeye Ait Veriler Buraya Gelecek");
+      });
+
+      // Semtlerin dinamik olarak yüklenmesi gerekecek
+      // Burada da ajax kullanılabilir
+    });
+  </script>
+</body>
+</html>

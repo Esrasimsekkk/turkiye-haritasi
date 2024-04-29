@@ -9,7 +9,12 @@ body {
   overflow: auto;
   border-radius: 30px; /* İçeriğin çerçevenin sınırlarını aşması durumunda kaydırma çubuklarını göster */
 }
-
+.div-1 {
+background-color: rgb(192, 226, 230);
+}
+#a .land{
+  background-color: #014c8d;
+}
 .svg-turkiye-haritasi {
   max-width: 1840px;
   margin: 0 auto;
