@@ -10,7 +10,7 @@ body {
   border-radius: 30px; /* İçeriğin çerçevenin sınırlarını aşması durumunda kaydırma çubuklarını göster */
 }
 .div-1 {
-background-color: rgb(192, 226, 230);
+  background-color: rgb(192, 226, 230);
 }
 
 .svg-turkiye-haritasi {
