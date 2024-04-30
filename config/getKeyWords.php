@@ -4,12 +4,6 @@ require_once('db_config.php');
 
 header('Content-Type: text/html; charset=utf-8');
 
-/*
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'turkiye_haritasi';
-*/
 
 // Veritabanı bağlantısını oluşturalım
 $conn = new mysqli($host, $username, $password, $database);
@@ -35,13 +29,13 @@ $ilceListesi = "'" . implode("','", $flattenedArray) . "'";
 
 
 // Seçili ilçelerin detaylarını almak için SQL sorgusu
-$sqlPositif = "SELECT ilceler.ilce_detay, iller.il_detay
+$sqlPositif = "SELECT ilceler.ilce_detay, ilceler.semtler, iller.il_detay
         FROM ilceler 
         INNER JOIN iller ON ilceler.il_id = iller.id 
         WHERE ilceler.ilce_adi IN ($ilceListesi)";
 
 // Negatif il ve ilçeleri almak için SQL sorgusu
-$sqlNegatif = "SELECT ilceler.ilce_detay, iller.il_detay
+$sqlNegatif = "SELECT ilceler.ilce_detay, ilceler.semtler, iller.il_detay
         FROM ilceler 
         INNER JOIN iller ON ilceler.il_id = iller.id 
         WHERE ilceler.ilce_adi NOT IN ($ilceListesi)";
@@ -56,6 +50,7 @@ if ($resultPositif->num_rows > 0) {
     while ($row = $resultPositif->fetch_assoc()) {
         $ilceDetaylari['pozitif'][] = array(
             'ilce_detay' => $row['ilce_detay'],
+            'semtler' => $row['semtler'],
             'il_detay' => $row['il_detay']
         );
     }
@@ -68,6 +63,7 @@ if ($resultNegatif->num_rows > 0) {
     while ($row = $resultNegatif->fetch_assoc()) {
         $ilceDetaylari['negatif'][] = array(
             'ilce_detay' => $row['ilce_detay'],
+            'semtler' => $row['semtler'],
             'il_detay' => $row['il_detay']
         );
     }
