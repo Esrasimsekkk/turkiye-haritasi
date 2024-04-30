@@ -101,10 +101,11 @@
         <select class="form-control mb-3" id="selectDistrict">
           <option value="">İlçe Seçiniz</option>
         </select>
-        <textarea class="form-control" rows="5" id="districtData" readonly></textarea>
+        <textarea class="form-control" rows="5" id="districtData"></textarea>
+        <button type="button" class="btn btn-primary mt-3" id="updateDistrictData">Verileri Güncelle</button>
       </div>
       <div class="col-md-4">
-        <textarea class="form-control" rows="5" id="neighborhoodData" readonly></textarea>
+        <textarea class="form-control" rows="5" id="neighborhoodData"></textarea>
       </div>
     </div>
   </div>
@@ -117,7 +118,7 @@
         var plaka = $(this).val();
         // AJAX isteği ile il detaylarını al
         $.ajax({
-          url: 'config/db_admin.php',
+          url: 'config/getCityData.php',
           type: 'POST',
           dataType: 'json',
           data: { plaka: plaka },
@@ -146,6 +147,12 @@
               $.each(response.ilceler, function(index, ilce) {
                 $('#selectDistrict').append('<option value="' + ilce.ilce_adi + '">' + ilce.ilce_adi + '</option>');
               });
+              
+              // İlçeler listesi doldurulduktan sonra "İlçe Seçiniz" seçeneğini ekle
+              $('#selectDistrict').prepend('<option value="" selected>İlçe Seçiniz</option>');
+              
+              // İl değiştirildiğinde ilçe detaylarını temizle
+              $('#districtData').val('');
             },
             error: function(xhr, status, error) {
               console.error(error);
@@ -154,30 +161,83 @@
         });
       });
       
-      // Verileri güncelle butonuna tıklandığında
-  $('#updateCityData').click(function() {
-    var updatedData = $('#cityData').val(); // Güncellenen verileri al
-    var plaka = $('#selectCity').val(); // Seçilen şehrin plakasını al
-    
-    // AJAX isteği ile güncellenen verileri ve plakayı gönder
-    $.ajax({
-      url: 'config/updateCityData.php',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        updatedData: updatedData,
-        plaka: plaka
-      },
-      success: function(response) {
-        // Başarılı bir şekilde güncellendiğine dair mesaj gösterilebilir veya başka bir işlem yapılabilir
-        alert("Veriler başarıyla güncellendi!");
-      },
-      error: function(xhr, status, error) {
-        console.error(error);
-        alert("Bir hata oluştu, veriler güncellenemedi.");
-      }
-    });
-  });
+      
+       // Verileri güncelle butonuna tıklandığında
+      $('#updateCityData').click(function() {
+        var updatedData = $('#cityData').val(); // Güncellenen verileri al
+        var plaka = $('#selectCity').val(); // Seçilen şehrin plakasını al
+        
+        // AJAX isteği ile güncellenen verileri ve plakayı gönder
+        $.ajax({
+          url: 'config/updateCityData.php',
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            updatedData: updatedData,
+            plaka: plaka
+          },
+          success: function(response) {
+            // Başarılı bir şekilde güncellendiğine dair mesaj gösterilebilir veya başka bir işlem yapılabilir
+            alert("Veriler başarıyla güncellendi!");
+          },
+          error: function(xhr, status, error) {
+            console.error(error);
+            alert("Bir hata oluştu, veriler güncellenemedi.");
+          }
+        });
+      });
+      $(document).ready(function() {
+        $('#selectDistrict').change(function() {
+          var selectedDistrict = $(this).val();
+  
+          // AJAX isteği ile ilçe detaylarını al
+          $.ajax({
+            url: 'config/getDistrictDetail.php',
+            type: 'POST',
+            dataType: 'json',
+            data: { selectedDistrict: selectedDistrict },
+            success: function(response) {
+              // Ilçe detaylarını textarea içine yerleştir
+              $('#districtData').val(response.ilce_detay);
+              
+              // Semtler verisini textarea içine yerleştir
+              $('#neighborhoodData').val(response.semtler);
+            },
+            error: function(xhr, status, error) {
+              console.error(error);
+            }
+          });
+        });
+      });
+      $(document).ready(function() {
+        $('#updateDistrictData').click(function() {
+          var updatedDistrictData = $('#districtData').val(); // Güncellenen ilçe detayları
+          var updatedNeighborhoodData = $('#neighborhoodData').val(); // Güncellenen semtler
+          var selectedDistrict = $('#selectDistrict').val(); // Seçilen ilçenin adı
+          
+          // AJAX isteği ile güncellenen verileri ve seçilen ilçenin adını gönder
+          $.ajax({
+            url: 'config/updateDistrictData.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+              updatedDistrictData: updatedDistrictData,
+              updatedNeighborhoodData: updatedNeighborhoodData,
+              selectedDistrict: selectedDistrict
+            },
+            success: function(response) {
+              // Başarılı bir şekilde güncellendiğine dair mesaj gösterilebilir veya başka bir işlem yapılabilir
+              alert("Veriler başarıyla güncellendi!");
+            },
+            error: function(xhr, status, error) {
+              console.error(error);
+              alert("Bir hata oluştu, veriler güncellenemedi.");
+            }
+          });
+        });
+      });
+      
+      
 
       
     });
