@@ -1705,7 +1705,7 @@ function svgturkiyeharitasi() {
     //console.log(seciliIlceArray);
     // Ajax isteği yap
     const xhr = new XMLHttpRequest();
-    const url = "config/db_config.php";
+    const url = "config/getKeyWords.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
