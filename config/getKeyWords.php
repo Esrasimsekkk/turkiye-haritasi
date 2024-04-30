@@ -1,9 +1,6 @@
 <?php
-// Veritabanı bağlantısı için gerekli bilgileri tanımlayalım
-$host = 'adresgezginitasarim.com';
-$username = 'adrestas';
-$password = 'ty575AG0?ym!';
-$database = 'adrestas_map';
+
+require_once('db_config.php');
 
 header('Content-Type: text/html; charset=utf-8');
 

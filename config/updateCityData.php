@@ -1,9 +1,6 @@
 <?php
-// Veritabanı bağlantısı için gerekli bilgiler
-$host = 'adresgezginitasarim.com';
-$username = 'adrestas';
-$password = 'ty575AG0?ym!';
-$database = 'adrestas_map';
+
+require_once('db_config.php');
 
 // Güncellenmiş veriyi ve il plakasını POST isteği ile al
 $updatedData = $_POST['updatedData'];
