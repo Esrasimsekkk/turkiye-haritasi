@@ -21,7 +21,13 @@
       class="svg-turkiye-haritasi cerceveli div-1"
       style="width: 100%; height: 90%; overflow: auto"
     >
-    <button id="negatif-kopyala" class="button-23" onclick="kopyalaButon('negatif_il', 'negatif_ilce', 'negatif_semt')">Kopyala</button>
+      <button
+        id="negatif-kopyala"
+        class="button-23"
+        onclick="kopyalaButon('negatif_il', 'negatif_ilce', 'negatif_semt')"
+      >
+        Kopyala
+      </button>
 
       <svg
         id="svg-turkiye-haritasi"
@@ -24326,20 +24332,24 @@
         var textarea1 = document.getElementById(elementId1);
         var textarea2 = document.getElementById(elementId2);
         var textarea3 = document.getElementById(elementId3);
-        
+
         // Boşluklar olmadan birleştirilmiş içerik
-        var birlestirilmisIcerik = textarea1.value.trim() + '\n' + textarea2.value.trim() + '\n' + textarea3.value.trim();
-        
-        var tempTextarea = document.createElement('textarea');
+        var birlestirilmisIcerik =
+          textarea1.value.trim() +
+          "\n" +
+          textarea2.value.trim() +
+          "\n" +
+          textarea3.value.trim();
+
+        var tempTextarea = document.createElement("textarea");
         tempTextarea.value = birlestirilmisIcerik;
         document.body.appendChild(tempTextarea);
-        
+
         tempTextarea.select();
-        document.execCommand('copy');
-        
+        document.execCommand("copy");
+
         document.body.removeChild(tempTextarea);
-    }
-    
+      }
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
