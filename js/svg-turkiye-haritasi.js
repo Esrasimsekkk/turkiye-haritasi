@@ -1609,6 +1609,8 @@ function svgturkiyeharitasi() {
       "bulancak",
       "nizip",
       "hopa",
+      "lefkosa",
+      "gazimagusa",
     ],
     "#9de0cc": [
       "bozuyuk",
@@ -1692,10 +1694,10 @@ function svgturkiyeharitasi() {
     hideGeriButon();
     // ... ilk hale dönme kodunuz ...
   }
-  
+
   // Butonu al
-  var temizleButonu = document.getElementById('temizle-butonu');
-  
+  var temizleButonu = document.getElementById("temizle-butonu");
+
   // Pozitif ve negatif illeri, ilçeleri ve semtleri textarea'lara yerleştir
   const pozitifIlcelerTextarea = document.getElementById("pozitif_ilce");
   const negatifIlcelerTextarea = document.getElementById("negatif_ilce");
@@ -1705,29 +1707,27 @@ function svgturkiyeharitasi() {
   const negatifSemtlerTextarea = document.getElementById("negatif_semt");
 
   // Butonun tıklanma olayını dinle
-  temizleButonu.addEventListener('click', function() {
-      // Gruplar için ilçeleri kaldır
-      ilcelerGrup.forEach((ilceGrubu) => {
-        unselectIlceGrup(ilceGrubu);
-      });
+  temizleButonu.addEventListener("click", function () {
+    // Gruplar için ilçeleri kaldır
+    ilcelerGrup.forEach((ilceGrubu) => {
+      unselectIlceGrup(ilceGrubu);
+    });
 
-      // Tek tek ilçeleri kaldır
-      seciliIlceler.forEach((ilceID) => {
-        unselectIlceTek(ilceID);
-      });
-      // Text alanlarını temizle
-      pozitifIlcelerTextarea.value = "";
-      negatifIlcelerTextarea.value = "";
-      pozitifIllerTextarea.value = "";
-      negatifIllerTextarea.value = "";
-      pozitifSemtlerTextarea.value = "";
-      negatifSemtlerTextarea.value = "";
+    // Tek tek ilçeleri kaldır
+    seciliIlceler.forEach((ilceID) => {
+      unselectIlceTek(ilceID);
+    });
+    // Text alanlarını temizleYES
+    pozitifIlcelerTextarea.value = "";
+    negatifIlcelerTextarea.value = "";
+    pozitifIllerTextarea.value = "";
+    negatifIllerTextarea.value = "";
+    pozitifSemtlerTextarea.value = "";
+    negatifSemtlerTextarea.value = "";
 
-      // Set'i temizle
-      seciliIlceler.clear();
+    // Set'i temizle
+    seciliIlceler.clear();
   });
-
-
 
   document
     .getElementById("geri-butonu")
@@ -1758,7 +1758,6 @@ function svgturkiyeharitasi() {
           let pozitifIller = "";
           let negatifIller = "";
 
-
           // Text alanlarını temizle
           pozitifIlcelerTextarea.value = "";
           negatifIlcelerTextarea.value = "";
@@ -1788,7 +1787,10 @@ function svgturkiyeharitasi() {
 
             // Semtleri textarea'ya ekle
             semtKelimeleri.forEach((semt) => {
-              pozitifSemtlerTextarea.value += semt.trim() + "\n";
+              // Semt boş değilse ekle
+              if (semt.trim() !== "") {
+                pozitifSemtlerTextarea.value += semt.trim() + "\n";
+              }
             });
           });
           // Pozitif illeri textarea'ya ekle
@@ -1815,7 +1817,10 @@ function svgturkiyeharitasi() {
 
             // Semtleri textarea'ya ekle
             semtKelimeleri.forEach((semt) => {
-              negatifSemtlerTextarea.value += semt.trim() + "\n";
+              // Semt boş değilse ekle
+              if (semt.trim() !== "") {
+                negatifSemtlerTextarea.value += semt.trim() + "\n";
+              }
             });
           });
 
@@ -1833,39 +1838,5 @@ function svgturkiyeharitasi() {
     };
     const data = JSON.stringify({ ilceler: seciliIlceArray });
     xhr.send(data);
-  }
-
-  // Avrupa bölgelerini seçen butonun tıklama olayı
-  document
-    .getElementById("avrupaButonu")
-    .addEventListener("click", function () {
-      toggleBolge("avrupa");
-    });
-
-  // Anadolu bölgelerini seçen butonun tıklama olayı
-  document
-    .getElementById("anadoluButonu")
-    .addEventListener("click", function () {
-      toggleBolge("anadolu");
-    });
-
-  // İlçeleri belirli bir bölgeye göre seçen veya seçili olanları iptal eden işlev
-  function toggleBolge(bolge) {
-    ilcePaths.forEach((ilcePath) => {
-      const ilceBolge = ilcePath.getAttribute("data-bolge");
-      const ilceID = ilcePath.id;
-
-      if (ilceBolge === bolge) {
-        // Belirtilen bölgeye ait ilçeleri seç veya seçili olanları iptal et
-        if (!seciliIlceler.has(ilceID)) {
-          selectIlceTek(ilceID);
-          seciliIlceler.add(ilceID);
-        } else {
-          unselectIlceTek(ilceID);
-          seciliIlceler.delete(ilceID);
-        }
-      }
-    });
-    getIlceDetay(); // Seçilen ilçelerin detaylarını güncelle
   }
 }

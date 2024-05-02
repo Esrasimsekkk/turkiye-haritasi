@@ -238,3 +238,9 @@ div.modal-body {
 .small-button:hover {
   background-color: #e0e0e0; /* Arka plan rengini değiştir */
 }
+
+#temizle-butonu {
+  position: absolute;
+  bottom: 100px; /* İstediğiniz yüksekliği ayarlayın */
+  left: 50px; /* İstediğiniz sol kenar boşluğunu ayarlayın */
+}
