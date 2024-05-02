@@ -1718,14 +1718,17 @@ function svgturkiyeharitasi() {
   // Butonun tıklanma olayını dinle
   temizleButonu.addEventListener("click", function () {
     // Gruplar için ilçeleri kaldır
-    ilcelerGrup.forEach((ilceGrubu) => {
-      unselectIlceGrup(ilceGrubu);
+    seciliIlceler.forEach((ilceID) => {
+      if (isOzelIlce(ilceID)) {
+        unselectOzelIlceTek(ilceID);
+        seciliIlceler.delete(ilceID);
+      } else {
+        unselectIlceTek(ilceID);
+        seciliIlceler.delete(ilceID); // İlçeyi listeden sil
+      }
     });
 
-    // Tek tek ilçeleri kaldır
-    seciliIlceler.forEach((ilceID) => {
-      unselectIlceTek(ilceID);
-    });
+    
     // Text alanlarını temizle
     pozitifIlcelerTextarea.value = "";
     negatifIlcelerTextarea.value = "";
