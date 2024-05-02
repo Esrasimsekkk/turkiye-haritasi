@@ -233,6 +233,11 @@ div.modal-body {
   bottom: 100px; /* İstediğiniz yüksekliği ayarlayın */
   left: 50px; /* İstediğiniz sol kenar boşluğunu ayarlayın */
 }
+#negatif-kopyala {
+  position: absolute;
+  left: 1400px;
+  top: 30px;
+}
 
 .small-button {
   padding: 6px 12px; /* Yatay ve dikey boşluk */
