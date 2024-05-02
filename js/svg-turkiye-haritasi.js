@@ -1839,4 +1839,43 @@ function svgturkiyeharitasi() {
     const data = JSON.stringify({ ilceler: seciliIlceArray });
     xhr.send(data);
   }
+
+  // Avrupa bölgelerini seçen butonun tıklama olayı
+  document
+    .getElementById("avrupaButonu")
+    .addEventListener("click", function () {
+      toggleBolge("avrupa");
+    });
+
+  // Anadolu bölgelerini seçen butonun tıklama olayı
+  document
+    .getElementById("anadoluButonu")
+    .addEventListener("click", function () {
+      toggleBolge("anadolu");
+    });
+
+  // İlçeleri belirli bir bölgeye göre seçen veya seçili olanları iptal eden işlev
+  function toggleBolge(bolge) {
+    ilcePaths.forEach((ilcePath) => {
+      const ilceBolge = ilcePath.getAttribute("data-bolge");
+      const ilceID = ilcePath.id;
+
+      if (ilceBolge === bolge) {
+        if (seciliIlceler.has(ilceID)) {
+          if (isOzelIlce(ilceID)) {
+            unselectOzelIlceTek(ilceID);
+            seciliIlceler.delete(ilceID);
+          } else {
+            unselectIlceTek(ilceID);
+            seciliIlceler.delete(ilceID); // İlçeyi listeden sil
+          }
+        } else {
+          // Eğer ilçe henüz seçili değilse, select işlemi yap
+          selectIlceTek(ilceID);
+          seciliIlceler.add(ilceID); // İlçeyi listeye ekle
+        }
+      }
+    });
+    getIlceDetay(); // Seçilen ilçelerin detaylarını güncelle
+  }
 }
