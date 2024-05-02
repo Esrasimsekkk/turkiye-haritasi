@@ -225,3 +225,9 @@ div.modal-body {
   height: 90%; /* İstediğiniz yüksekliği verebilirsiniz */
   overflow: auto;
 }
+
+#temizle-butonu {
+  position: absolute;
+  bottom: 100px; /* İstediğiniz yüksekliği ayarlayın */
+  left: 50px; /* İstediğiniz sol kenar boşluğunu ayarlayın */
+}
