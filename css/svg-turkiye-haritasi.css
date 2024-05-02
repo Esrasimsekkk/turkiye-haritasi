@@ -125,6 +125,9 @@ body {
 #svg-turkiye-haritasi g g path:hover {
   fill: #1094f6;
 }
+#svg-turkiye-haritasi g g .ozel:hover {
+  fill: #1094f6;
+}
 
 #svg-turkiye-haritasi g #guneykibris path {
   fill: #cac0a4;
@@ -225,14 +228,22 @@ div.modal-body {
   height: 90%; /* İstediğiniz yüksekliği verebilirsiniz */
   overflow: auto;
 }
-
 #temizle-butonu {
   position: absolute;
   bottom: 100px; /* İstediğiniz yüksekliği ayarlayın */
   left: 50px; /* İstediğiniz sol kenar boşluğunu ayarlayın */
 }
-#negatif-kopyala{
-  position:absolute;
-  left: 1500px;
-  top: 30px;
+
+.small-button {
+  padding: 6px 12px; /* Yatay ve dikey boşluk */
+  font-size: 5px; /* Yazı boyutu */
+  border: 1px solid #ccc; /* Kenarlık */
+  background-color: #f0f0f0; /* Arka plan rengi */
+  color: #333; /* Yazı rengi */
+  cursor: pointer; /* Fare imlecini göster */
+}
+
+/* Butonun üzerine gelindiğinde */
+.small-button:hover {
+  background-color: #e0e0e0; /* Arka plan rengini değiştir */
 }
