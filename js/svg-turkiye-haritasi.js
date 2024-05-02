@@ -1692,6 +1692,42 @@ function svgturkiyeharitasi() {
     hideGeriButon();
     // ... ilk hale dönme kodunuz ...
   }
+  
+  // Butonu al
+  var temizleButonu = document.getElementById('temizle-butonu');
+  
+  // Pozitif ve negatif illeri, ilçeleri ve semtleri textarea'lara yerleştir
+  const pozitifIlcelerTextarea = document.getElementById("pozitif_ilce");
+  const negatifIlcelerTextarea = document.getElementById("negatif_ilce");
+  const pozitifIllerTextarea = document.getElementById("pozitif_il");
+  const negatifIllerTextarea = document.getElementById("negatif_il");
+  const pozitifSemtlerTextarea = document.getElementById("pozitif_semt");
+  const negatifSemtlerTextarea = document.getElementById("negatif_semt");
+
+  // Butonun tıklanma olayını dinle
+  temizleButonu.addEventListener('click', function() {
+      // Gruplar için ilçeleri kaldır
+      ilcelerGrup.forEach((ilceGrubu) => {
+        unselectIlceGrup(ilceGrubu);
+      });
+
+      // Tek tek ilçeleri kaldır
+      seciliIlceler.forEach((ilceID) => {
+        unselectIlceTek(ilceID);
+      });
+      // Text alanlarını temizle
+      pozitifIlcelerTextarea.value = "";
+      negatifIlcelerTextarea.value = "";
+      pozitifIllerTextarea.value = "";
+      negatifIllerTextarea.value = "";
+      pozitifSemtlerTextarea.value = "";
+      negatifSemtlerTextarea.value = "";
+
+      // Set'i temizle
+      seciliIlceler.clear();
+  });
+
+
 
   document
     .getElementById("geri-butonu")
@@ -1722,17 +1758,6 @@ function svgturkiyeharitasi() {
           let pozitifIller = "";
           let negatifIller = "";
 
-          // Pozitif ve negatif illeri, ilçeleri ve semtleri textarea'lara yerleştir
-          const pozitifIlcelerTextarea =
-            document.getElementById("pozitif_ilce");
-          const negatifIlcelerTextarea =
-            document.getElementById("negatif_ilce");
-          const pozitifIllerTextarea = document.getElementById("pozitif_il");
-          const negatifIllerTextarea = document.getElementById("negatif_il");
-          const pozitifSemtlerTextarea =
-            document.getElementById("pozitif_semt");
-          const negatifSemtlerTextarea =
-            document.getElementById("negatif_semt");
 
           // Text alanlarını temizle
           pozitifIlcelerTextarea.value = "";
