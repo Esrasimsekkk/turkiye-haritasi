@@ -1787,8 +1787,12 @@ function svgturkiyeharitasi() {
 
             // Semtleri textarea'ya ekle
             semtKelimeleri.forEach((semt) => {
-              pozitifSemtlerTextarea.value += semt.trim() + "\n";
+            // Semt boş değilse ekle
+              if (semt.trim() !== '') {
+                pozitifSemtlerTextarea.value += semt.trim() + "\n";
+              }
             });
+
           });
           // Pozitif illeri textarea'ya ekle
           pozitifIllerSet.forEach((il) => {
@@ -1814,8 +1818,11 @@ function svgturkiyeharitasi() {
 
             // Semtleri textarea'ya ekle
             semtKelimeleri.forEach((semt) => {
-              negatifSemtlerTextarea.value += semt.trim() + "\n";
-            });
+              // Semt boş değilse ekle
+                if (semt.trim() !== '') {
+                  negatifSemtlerTextarea.value += semt.trim() + "\n";
+                }
+              });
           });
 
           // Negatif illeri textarea'ya ekle
