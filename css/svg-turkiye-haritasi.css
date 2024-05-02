@@ -233,3 +233,8 @@ div.modal-body {
   bottom: 100px; /* İstediğiniz yüksekliği ayarlayın */
   left: 50px; /* İstediğiniz sol kenar boşluğunu ayarlayın */
 }
+#negatif-kopyala{
+  position:absolute;
+  left: 1500px;
+  top: 30px;
+}
