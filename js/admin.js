@@ -30,7 +30,7 @@ $(document).ready(function() {
             // İlçeler dropdown listesine ekle
             $('#selectDistrict').empty(); // Önceki ilçe listesini temizle
             $.each(response.ilceler, function(index, ilce) {
-              $('#selectDistrict').append('<option value="' + ilce.ilce_adi + '">' + ilce.ilce_adi + '</option>');
+              $('#selectDistrict').append('<option value="' + ilce.ilce_adi + '">' + ilce.ilce_adi_tr + '</option>');
             });
             
             // İlçeler listesi doldurulduktan sonra "İlçe Seçiniz" seçeneğini ekle

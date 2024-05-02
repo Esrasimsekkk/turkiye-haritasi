@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 // İlçeleri çek
-$sql_ilceler = "SELECT ilce_adi FROM ilceler WHERE il_id = ?";
+$sql_ilceler = "SELECT ilce_adi, ilce_adi_tr FROM ilceler WHERE il_id = ?";
 $stmt = $conn->prepare($sql_ilceler);
 $stmt->bind_param("s", $plaka);
 $stmt->execute();
