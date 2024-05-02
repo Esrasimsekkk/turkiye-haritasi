@@ -1326,7 +1326,11 @@ function svgturkiyeharitasi() {
   function selectIlceGrup(ilID) {
     if (ilcelerGrup.has(ilID)) {
       ilcelerGrup.get(ilID).forEach((ilcePath) => {
-        ilcePath.style.fill = "#1094F6"; // Seçili rengi uygula (örneğin kırmızı)
+        if (isOzelIlce(ilcePath.id)) {
+          ilcePath.style.fill = "#0562a9"; // Özel ilçe rengi (örneğin mavi)
+        } else {
+          ilcePath.style.fill = "#1094F6"; // Diğer ilçe rengi (örneğin mavi)
+        }
         seciliIlceler.add(ilcePath.id); // İlçeyi listeye ekle
       });
     }
@@ -1485,8 +1489,13 @@ function svgturkiyeharitasi() {
   function selectIlceTek(ilceID) {
     const ilcePath = document.getElementById(ilceID);
     if (ilcePath) {
-      ilcePath.style.fill = "#1094F6"; // Seçili rengi uygula (örneğin mavi)
-      seciliIlceler.add(ilceID); // İlçeyi seçili ilçeler listesine ekle
+      if (isOzelIlce(ilceID)) {
+        ilcePath.style.fill = "#0562a9";
+      } else {
+        ilcePath.style.fill = "#1094F6"; // Seçili rengi uygula (örneğin mavi)
+        seciliIlceler.add(ilceID);
+      }
+      // İlçeyi seçili ilçeler listesine ekle
     }
   }
 
@@ -1787,12 +1796,11 @@ function svgturkiyeharitasi() {
 
             // Semtleri textarea'ya ekle
             semtKelimeleri.forEach((semt) => {
-            // Semt boş değilse ekle
-              if (semt.trim() !== '') {
+              // Semt boş değilse ekle
+              if (semt.trim() !== "") {
                 pozitifSemtlerTextarea.value += semt.trim() + "\n";
               }
             });
-
           });
           // Pozitif illeri textarea'ya ekle
           pozitifIllerSet.forEach((il) => {
@@ -1819,10 +1827,10 @@ function svgturkiyeharitasi() {
             // Semtleri textarea'ya ekle
             semtKelimeleri.forEach((semt) => {
               // Semt boş değilse ekle
-                if (semt.trim() !== '') {
-                  negatifSemtlerTextarea.value += semt.trim() + "\n";
-                }
-              });
+              if (semt.trim() !== "") {
+                negatifSemtlerTextarea.value += semt.trim() + "\n";
+              }
+            });
           });
 
           // Negatif illeri textarea'ya ekle
