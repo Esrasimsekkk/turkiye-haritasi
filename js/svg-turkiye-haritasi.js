@@ -1834,13 +1834,13 @@ function svgturkiyeharitasi() {
                 negatifSemtlerTextarea.value += semt.trim() + "\n";
               }
             });
+           
           });
-
           // Negatif illeri textarea'ya ekle
           negatifIllerSet.forEach((il) => {
             negatifIller += il + "\n";
           });
-          negatifIllerTextarea.value = negatifIller;
+          negatifIllerTextarea.value = negatifIller; 
         }
       } catch (error) {
         console.error("Hata oluştu:", error);
