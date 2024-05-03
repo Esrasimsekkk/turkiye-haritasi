@@ -44,6 +44,15 @@ body {
   cursor: pointer;
   fill: #80ef8d;
 }
+#land path {
+  cursor: pointer;
+  fill: #e1c17d;
+}
+
+#sea path {
+  cursor: pointer;
+  fill: #e1c17d;
+}
 
 #svg-turkiye-haritasi .green g .ozel {
   cursor: pointer;
