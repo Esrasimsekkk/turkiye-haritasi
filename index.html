@@ -24199,40 +24199,6 @@
             placeholder="Genel Negatifler buraya"
           ></textarea>
         </div>
-        <!-- Genel Negatifler Listesine Ekle -->
-        <div class="col mt-4">
-          <h5>Genel Negatifler Listesine Ekle</h5>
-          <textarea
-            style="font-size: 12px"
-            id="genelNegatifEkleTextarea"
-            class="form-control"
-            rows="1"
-            placeholder="Genel Negatifler Listesine Ekle"
-          ></textarea>
-          <button
-            onclick="ekle('genelNegatiflerTextarea', 'genelNegatifEkleTextarea')"
-            class="btn btn-dark mt-2"
-          >
-            Ekle
-          </button>
-        </div>
-        <!-- Genel Negatifler Listesinden Sil -->
-        <div class="col mt-4">
-          <h5>Genel Negatifler Listesinden Sil</h5>
-          <textarea
-            style="font-size: 12px"
-            id="genelNegatifSilTextarea"
-            class="form-control"
-            rows="1"
-            placeholder="Genel Negatifler Listesinden Sil"
-          ></textarea>
-          <button
-            onclick="sil('genelNegatiflerTextarea', 'genelNegatifSilTextarea')"
-            class="btn btn-dark mt-2 mb-4"
-          >
-            Sil
-          </button>
-        </div>
       </div>
       <div class="col custom-table table-success col-md-12 col-lg-4">
         <!-- Negatif Siteler Listesi -->
@@ -24245,40 +24211,6 @@
             rows="20"
             placeholder="Negatif Siteler buraya"
           ></textarea>
-        </div>
-        <!-- Negatif Siteler Listesine Ekle -->
-        <div class="col mt-4">
-          <h5>Negatif Siteler Listesine Ekle</h5>
-          <textarea
-            style="font-size: 12px"
-            id="negatifEkleTextarea"
-            class="form-control"
-            rows="1"
-            placeholder="Negatif Siteler Listesine Ekle"
-          ></textarea>
-          <button
-            onclick="ekle('negatiflerTextarea', 'negatifEkleTextarea')"
-            class="btn btn-dark mt-2"
-          >
-            Ekle
-          </button>
-        </div>
-        <!-- Negatif Siteler Listesinden Sil -->
-        <div class="col mt-4">
-          <h5>Negatif Siteler Listesinden Sil</h5>
-          <textarea
-            style="font-size: 12px"
-            id="negatifSilTextarea"
-            class="form-control"
-            rows="1"
-            placeholder="Negatif Siteler Listesinden Sil"
-          ></textarea>
-          <button
-            onclick="sil('negatiflerTextarea', 'negatifSilTextarea')"
-            class="btn btn-dark mt-2"
-          >
-            Sil
-          </button>
         </div>
       </div>
       <div class="col custom-table table-success col-md-12 col-lg-4">
@@ -24293,80 +24225,9 @@
             placeholder="Pozitif Siteler buraya"
           ></textarea>
         </div>
-        <!-- Pozitif Siteler Listesine Ekle -->
-        <div class="col mt-4">
-          <h5>Pozitif Siteler Listesine Ekle</h5>
-          <textarea
-            style="font-size: 12px"
-            id="pozitifEkleTextarea"
-            class="form-control"
-            rows="1"
-            placeholder="Pozitif Siteler Listesine Ekle"
-          ></textarea>
-          <button
-            onclick="ekle('pozitiflerTextarea', 'pozitifEkleTextarea')"
-            class="btn btn-dark mt-2"
-          >
-            Ekle
-          </button>
-        </div>
-        <!-- Pozitif Siteler Listesinden Sil -->
-        <div class="col mt-4">
-          <h5>Pozitif Siteler Listesinden Sil</h5>
-          <textarea
-            style="font-size: 12px"
-            id="pozitifSilTextarea"
-            class="form-control"
-            rows="1"
-            placeholder="Pozitif Siteler Listesinden Sil"
-          ></textarea>
-          <button
-            onclick="sil('pozitiflerTextarea', 'pozitifSilTextarea')"
-            class="btn btn-dark mt-2 mb-3"
-          >
-            Sil
-          </button>
-        </div>
       </div>
     </div>
 
-    <script>
-      function ekle(genelNegatiflerId, eklenecekId) {
-        var genelNegatiflerTextarea =
-          document.getElementById(genelNegatiflerId);
-        var eklenecekTextarea = document.getElementById(eklenecekId);
-        var yeniNegatif = eklenecekTextarea.value.trim();
-
-        if (yeniNegatif !== "") {
-          if (genelNegatiflerTextarea.value !== "") {
-            genelNegatiflerTextarea.value += "\n" + yeniNegatif;
-          } else {
-            genelNegatiflerTextarea.value += yeniNegatif;
-          }
-        }
-
-        eklenecekTextarea.value = "";
-      }
-
-      function sil(genelNegatiflerId, silinecekId) {
-        var genelNegatiflerTextarea =
-          document.getElementById(genelNegatiflerId);
-        var silinecekTextarea = document.getElementById(silinecekId);
-        var silinecekNegatif = silinecekTextarea.value.trim();
-        var negatifler = genelNegatiflerTextarea.value.split("\n");
-
-        if (!negatifler.includes(silinecekNegatif)) {
-          alert("Silmek istediğiniz kelime listede bulunmamaktadır!");
-          return;
-        }
-
-        var yeniNegatifler = negatifler.filter(function (negatif) {
-          return negatif.trim() !== silinecekNegatif;
-        });
-        genelNegatiflerTextarea.value = yeniNegatifler.join("\n");
-        silinecekTextarea.value = "";
-      }
-    </script>
     <script>
       function kopyala(elementId) {
         var textarea = document.getElementById(elementId);
