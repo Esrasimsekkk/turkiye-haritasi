@@ -21,9 +21,13 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $veri);
 
 if ($stmt->execute()) {
-    echo "success"; // Başarılı yanıtı döndür
+    if ($stmt->affected_rows > 0) {
+        echo "success"; // Başarılı işlem durumu
+    } else {
+        echo "failure"; // Veri bulunamadı veya silinemedi
+    }
 } else {
-    echo "error"; // Hata yanıtı döndür
+    echo "failure"; // Başarısız işlem durumu
 }
 
 // Sorgu sonrası kaynakları serbest bırakalım ve bağlantıyı kapatalım
