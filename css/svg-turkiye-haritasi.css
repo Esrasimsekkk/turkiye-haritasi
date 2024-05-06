@@ -239,13 +239,13 @@ div.modal-body {
 }
 #temizle-butonu {
   position: absolute;
-  bottom: 100px; /* İstediğiniz yüksekliği ayarlayın */
-  left: 50px; /* İstediğiniz sol kenar boşluğunu ayarlayın */
+  bottom: 15%; /* İstediğiniz yüksekliği ayarlayın */
+  left: 8%; /* İstediğiniz sol kenar boşluğunu ayarlayın */
 }
 #negatif-kopyala {
   position: absolute;
-  left: 1500px;
-  top: 30px;
+  left: 87%;
+  top: 5%;
 }
 
 .small-button {

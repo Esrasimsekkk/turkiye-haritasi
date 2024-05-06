@@ -74,7 +74,8 @@ function svgturkiyeharitasi() {
       event.target.tagName === "path" &&
       event.target.parentNode.id !== "s" &&
       event.target.parentNode.id !== "nokta" &&
-      event.target.parentNode.id !== "a"
+      event.target.parentNode.id !== "a" &&
+      event.target.parentNode.id !== "land"
     ) {
       info.innerHTML = [
         "<div>",
@@ -157,7 +158,7 @@ function svgturkiyeharitasi() {
       const padding = 210;
 
       const viewBoxValue = [
-        bbox.x - padding + 100,
+        bbox.x - padding + 110,
         bbox.y - padding + 130,
         bbox.width + padding * 2,
         bbox.height + padding * 2,
@@ -878,7 +879,7 @@ function svgturkiyeharitasi() {
       const padding = 210;
 
       const viewBoxValue = [
-        bbox.x - padding + 50,
+        bbox.x - padding + 0,
         bbox.y - padding - 50,
         bbox.width + padding * 2,
         bbox.height + padding * 2,
@@ -892,7 +893,7 @@ function svgturkiyeharitasi() {
       const padding = 280;
 
       const viewBoxValue = [
-        bbox.x - padding + 50,
+        bbox.x - padding - 45,
         bbox.y - padding + 0,
         bbox.width + padding * 2,
         bbox.height + padding * 2,
@@ -1748,7 +1749,7 @@ function svgturkiyeharitasi() {
   function getIlceDetay() {
     // Secili ilceler setinden bir dizi oluştur
     const seciliIlceArray = Array.from(seciliIlceler);
-    //console.log(seciliIlceArray);
+    ////console.log(seciliIlceArray);
     // Ajax isteği yap
     const xhr = new XMLHttpRequest();
     const url = "config/getKeyWords.php";
@@ -1757,10 +1758,8 @@ function svgturkiyeharitasi() {
     xhr.onreadystatechange = function () {
       try {
         if (xhr.readyState === 4 && xhr.status === 200) {
-          console.log(xhr.responseText);
           const ilceDetaylari = JSON.parse(xhr.responseText);
           // Gelen verileri işle veya göster
-          console.log(ilceDetaylari);
 
           // Pozitif ve negatif ilçeleri ayrı ayrı al
           const positifIlceler = ilceDetaylari.pozitif;
@@ -1834,13 +1833,13 @@ function svgturkiyeharitasi() {
                 negatifSemtlerTextarea.value += semt.trim() + "\n";
               }
             });
+           
           });
-
           // Negatif illeri textarea'ya ekle
           negatifIllerSet.forEach((il) => {
             negatifIller += il + "\n";
           });
-          negatifIllerTextarea.value = negatifIller;
+          negatifIllerTextarea.value = negatifIller; 
         }
       } catch (error) {
         console.error("Hata oluştu:", error);
