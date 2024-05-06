@@ -154,14 +154,14 @@
           <h5>Genel Negatifler Listesine Ekle</h5>
           <textarea
             style="font-size: 12px"
-            id="genelNegatifEkleTextareaAdd"
+            id="genelNegatifEkleTextarea"
             class="form-control"
             rows="1"
             placeholder="Genel Negatifler Listesine Ekle"
           ></textarea>
           <button
             type="button"
-            id="ekleGenelNegatifBtn"
+            id="addGenelNegatifBtn"
             class="btn btn-dark mt-2"
           >
             Ekle
@@ -178,7 +178,8 @@
             placeholder="Genel Negatifler Listesinden Sil"
           ></textarea>
           <button
-            onclick="sil('genelNegatiflerTextarea', 'genelNegatifSilTextarea')"
+            type="button"
+            id="deleteGenelNegatifBtn"
             class="btn btn-dark mt-2 mb-4"
           >
             Sil
@@ -197,7 +198,8 @@
             placeholder="Negatif Siteler Listesine Ekle"
           ></textarea>
           <button
-            onclick="ekle('negatiflerTextarea', 'negatifEkleTextarea')"
+            type="button"
+            id="addNegatifSiteBtn"
             class="btn btn-dark mt-2"
           >
             Ekle
@@ -214,7 +216,8 @@
             placeholder="Negatif Siteler Listesinden Sil"
           ></textarea>
           <button
-            onclick="sil('negatiflerTextarea', 'negatifSilTextarea')"
+            type="button"
+            id="deleteNegatifSiteBtn"
             class="btn btn-dark mt-2"
           >
             Sil
@@ -233,7 +236,8 @@
             placeholder="Pozitif Siteler Listesine Ekle"
           ></textarea>
           <button
-            onclick="ekle('pozitiflerTextarea', 'pozitifEkleTextarea')"
+            type="button"
+            id="addPozitifSiteBtn"
             class="btn btn-dark mt-2"
           >
             Ekle
@@ -250,15 +254,16 @@
             placeholder="Pozitif Siteler Listesinden Sil"
           ></textarea>
           <button
-            onclick="sil('pozitiflerTextarea', 'pozitifSilTextarea')"
+            type="button"
+            id="deletePozitifSiteBtn"
             class="btn btn-dark mt-2 mb-3"
           >
             Sil
           </button>
-        </div>
+        </div>  
       </div>
     </div>
-
+    <script src="js/admin.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -281,6 +286,7 @@
             },
           });
         });
+      });
         $(document).ready(function () {
           $("#selectCity").change(function () {
             var plaka = $(this).val();
@@ -299,7 +305,7 @@
                     '<option value="' +
                       ilce.ilce_adi +
                       '">' +
-                      ilce.ilce_adi +
+                      ilce.ilce_adi_tr +
                       "</option>"
                   );
                 });
@@ -393,7 +399,194 @@
             });
           });
         });
+
+        $(document).ready(function() {
+          $('#addGenelNegatifBtn').click(function() {
+              // textarea'dan veriyi al
+              var veri = $('#genelNegatifEkleTextarea').val().trim();
+      
+              // Verinin boş olup olmadığını kontrol et
+              if (veri !== "") {
+                  // AJAX isteği yap
+                  $.ajax({
+                      type: "POST",
+                      url: "config/addGenelNegatif.php",
+                      contentType: "application/json", // JSON verisi gönderiyoruz
+                      data: JSON.stringify({ veri: veri }), // JSON formatına dönüştürüyoruz
+                      success: function(response) {
+                          alert("Veri başarıyla eklendi.");
+                      },
+                      error: function(xhr, status, error) {
+                          // Hata durumunu işle
+                          console.error(xhr.responseText);
+                      }
+                  });
+              } else {
+                  // Veri boşsa kullanıcıyı uyar
+                  alert("Veri girmelisiniz.");
+              }
+          });
       });
+      $(document).ready(function() {
+        $('#deleteGenelNegatifBtn').click(function() {
+            // textarea'dan veriyi al
+            var veri = $('#genelNegatifSilTextarea').val().trim();
+    
+            // Verinin boş olup olmadığını kontrol et
+            if (veri !== "") {
+                // AJAX isteği yap
+                $.ajax({
+                    type: "POST",
+                    url: "config/deleteGenelNegatif.php",
+                    contentType: "application/json", // JSON verisi gönderiyoruz
+                    data: JSON.stringify({ veri: veri }), // JSON formatına dönüştürüyoruz
+                    success: function(response) {
+                        // Başarılı yanıtı işle
+                        if (response === "success") {
+                            alert("Veri başarıyla silindi.");
+                        } else {
+                            alert("Belirtilen veri veritabanında bulunamadı veya silinemedi.");
+                        }
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Hata durumunu işle
+                        console.error(xhr.responseText);
+                    }
+                });
+            } else {
+                // Veri boşsa kullanıcıyı uyar
+                alert("Veri girmelisiniz.");
+            }
+        });
+    });
+    $(document).ready(function() {
+      $('#addNegatifSiteBtn').click(function() {
+          // textarea'dan veriyi al
+          var veri = $('#negatifEkleTextarea').val().trim();
+  
+          // Verinin boş olup olmadığını kontrol et
+          if (veri !== "") {
+              // AJAX isteği yap
+              $.ajax({
+                  type: "POST",
+                  url: "config/addNegatifSite.php",
+                  contentType: "application/json", // JSON verisi gönderiyoruz
+                  data: JSON.stringify({ veri: veri }), // JSON formatına dönüştürüyoruz
+                  success: function(response) {
+                      alert("Veri başarıyla eklendi.");
+                  },
+                  error: function(xhr, status, error) {
+                      // Hata durumunu işle
+                      console.error(xhr.responseText);
+                  }
+              });
+          } else {
+              // Veri boşsa kullanıcıyı uyar
+              alert("Veri girmelisiniz.");
+          }
+      });
+  });
+  $(document).ready(function() {
+    $('#deleteNegatifSiteBtn').click(function() {
+        // textarea'dan veriyi al
+        var veri = $('#negatifSilTextarea').val().trim();
+
+        // Verinin boş olup olmadığını kontrol et
+        if (veri !== "") {
+            // AJAX isteği yap
+            $.ajax({
+                type: "POST",
+                url: "config/deleteNegatifSite.php",
+                contentType: "application/json", // JSON verisi gönderiyoruz
+                data: JSON.stringify({ veri: veri }), // JSON formatına dönüştürüyoruz
+                success: function(response) {
+                    if (response === "success") {
+                        alert("Veri başarıyla silindi.");
+                    } else {
+                        alert("Belirtilen veri veritabanında bulunamadı veya silinemedi.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Hata durumunu işle
+                    console.error(xhr.responseText);
+                }
+            });
+        } else {
+            // Veri boşsa kullanıcıyı uyar
+            alert("Veri girmelisiniz.");
+        }
+    });
+});
+$(document).ready(function() {
+  $('#addPozitifSiteBtn').click(function() {
+      // textarea'dan veriyi al
+      var veri = $('#pozitifEkleTextarea').val().trim();
+
+      // Verinin boş olup olmadığını kontrol et
+      if (veri !== "") {
+          // AJAX isteği yap
+          $.ajax({
+              type: "POST",
+              url: "config/addPozitifSite.php",
+              contentType: "application/json", // JSON verisi gönderiyoruz
+              data: JSON.stringify({ veri: veri }), // JSON formatına dönüştürüyoruz
+              success: function(response) {
+                  if (response === "success") {
+                      alert("Veri başarıyla eklendi.");
+                  } else {
+                      alert("Veri zaten mevcut veya eklenemedi.");
+                  }
+              },
+              error: function(xhr, status, error) {
+                  // Hata durumunu işle
+                  console.error(xhr.responseText);
+              }
+          });
+      } else {
+          // Veri boşsa kullanıcıyı uyar
+          alert("Veri girmelisiniz.");
+      }
+  });
+});
+$(document).ready(function() {
+  $('#deletePozitifSiteBtn').click(function() {
+      // textarea'dan veriyi al
+      var veri = $('#pozitifSilTextarea').val().trim();
+
+      // Verinin boş olup olmadığını kontrol et
+      if (veri !== "") {
+          // AJAX isteği yap
+          $.ajax({
+              type: "POST",
+              url: "config/deletePozitifSite.php",
+              contentType: "application/json", // JSON verisi gönderiyoruz
+              data: JSON.stringify({ veri: veri }), // JSON formatına dönüştürüyoruz
+              success: function(response) {
+                  if (response === "success") {
+                      alert("Veri başarıyla silindi.");
+                  } else {
+                      alert("Belirtilen veri veritabanında bulunamadı veya silinemedi.");
+                  }
+              },
+              error: function(xhr, status, error) {
+                  // Hata durumunu işle
+                  console.error(xhr.responseText);
+              }
+          });
+      } else {
+          // Veri boşsa kullanıcıyı uyar
+          alert("Veri girmelisiniz.");
+      }
+  });
+});
+
+
+
+  
+    
+      
+
     </script>
   </body>
 </html>

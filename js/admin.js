@@ -16,6 +16,7 @@ $(document).ready(function() {
         }
       });
     });
+  });
     $(document).ready(function() {
       $('#selectCity').change(function() {
         var plaka = $(this).val();
@@ -122,59 +123,33 @@ $(document).ready(function() {
       });
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
-      // Genel Negatifler için ekleme butonunu dinle
-      document.getElementById("ekleGenelNegatifBtn").addEventListener("click", function() {
-          ekleGenelNegatif();
-      });
+    $(document).ready(function() {
+      $('#ekleGenelNegatifBtn').click(function() {
+          // textarea'dan veriyi al
+          var veri = $('#genelNegatifEkleTextareaAdd').val().trim();
   
-      // Genel Negatifler için silme butonunu dinle
-      document.getElementById("silGenelNegatifBtn").addEventListener("click", function() {
-          silGenelNegatif();
-      });
-  
-      // Negatif Siteler için ekleme butonunu dinle
-      document.getElementById("ekleNegatifSiteBtn").addEventListener("click", function() {
-          ekleNegatifSite();
-      });
-  
-      // Negatif Siteler için silme butonunu dinle
-      document.getElementById("silNegatifSiteBtn").addEventListener("click", function() {
-          silNegatifSite();
-      });
-  
-      // Pozitif Siteler için ekleme butonunu dinle
-      document.getElementById("eklePozitifSiteBtn").addEventListener("click", function() {
-          eklePozitifSite();
-      });
-  
-      // Pozitif Siteler için silme butonunu dinle
-      document.getElementById("silPozitifSiteBtn").addEventListener("click", function() {
-          silPozitifSite();
+          // Verinin boş olup olmadığını kontrol et
+          if (veri !== "") {
+              // AJAX isteği yap
+              $.ajax({
+                  type: "POST",
+                  url: "config/genelNegatifEkleTextarea.php",
+                  data: { veri: veri },
+                  success: function(response) {
+                      // Başarılı yanıtı işle
+                      console.log(response);
+                  },
+                  error: function(xhr, status, error) {
+                      // Hata durumunu işle
+                      console.error(xhr.responseText);
+                  }
+              });
+          } else {
+              // Veri boşsa kullanıcıyı uyar
+              alert("Veri girmelisiniz.");
+          }
       });
   });
   
 
-    function ekleGenelNegatif() {
-      const genelNegatiflerTextareaAdd = document.getElementById("genelNegatifEkleTextareaAdd");
-      const veri = genelNegatiflerTextareaAdd.value.trim();
-  
-      if (veri !== "") {
-          // AJAX isteği yap
-          const xhr = new XMLHttpRequest();
-          const url = "config/addGenelNegatif.php";
-          xhr.open("POST", url, true);
-          xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.onreadystatechange = function () {
-              if (xhr.readyState === 4 && xhr.status === 200) {
-                  // Başarılı işlem mesajı veya diğer geri dönüşler burada işlenebilir
-                  console.log(xhr.responseText);
-              }
-          };
-          xhr.send(JSON.stringify({ veri: veri }));
-      }
-  }
     
-
-    
-  });
