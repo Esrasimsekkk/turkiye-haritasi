@@ -158,7 +158,7 @@ function svgturkiyeharitasi() {
       const padding = 210;
 
       const viewBoxValue = [
-        bbox.x - padding + 100,
+        bbox.x - padding + 110,
         bbox.y - padding + 130,
         bbox.width + padding * 2,
         bbox.height + padding * 2,
@@ -879,7 +879,7 @@ function svgturkiyeharitasi() {
       const padding = 210;
 
       const viewBoxValue = [
-        bbox.x - padding + 50,
+        bbox.x - padding + 0,
         bbox.y - padding - 50,
         bbox.width + padding * 2,
         bbox.height + padding * 2,
@@ -893,7 +893,7 @@ function svgturkiyeharitasi() {
       const padding = 280;
 
       const viewBoxValue = [
-        bbox.x - padding + 50,
+        bbox.x - padding - 45,
         bbox.y - padding + 0,
         bbox.width + padding * 2,
         bbox.height + padding * 2,
