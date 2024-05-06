@@ -44,6 +44,15 @@ body {
   cursor: pointer;
   fill: #80ef8d;
 }
+#land path {
+  cursor: pointer;
+  fill: #f3d697;
+}
+
+#sea path {
+  cursor: pointer;
+  fill: #e1c17d;
+}
 
 #svg-turkiye-haritasi .green g .ozel {
   cursor: pointer;
@@ -230,12 +239,12 @@ div.modal-body {
 }
 #temizle-butonu {
   position: absolute;
-  bottom: 100px; /* İstediğiniz yüksekliği ayarlayın */
-  left: 50px; /* İstediğiniz sol kenar boşluğunu ayarlayın */
+  bottom: 120px; /* İstediğiniz yüksekliği ayarlayın */
+  left: 120px; /* İstediğiniz sol kenar boşluğunu ayarlayın */
 }
 #negatif-kopyala {
   position: absolute;
-  left: 1500px;
+  left: 1400px;
   top: 30px;
 }
 

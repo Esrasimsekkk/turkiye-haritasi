@@ -74,7 +74,8 @@ function svgturkiyeharitasi() {
       event.target.tagName === "path" &&
       event.target.parentNode.id !== "s" &&
       event.target.parentNode.id !== "nokta" &&
-      event.target.parentNode.id !== "a"
+      event.target.parentNode.id !== "a" &&
+      event.target.parentNode.id !== "land"
     ) {
       info.innerHTML = [
         "<div>",
@@ -1748,7 +1749,7 @@ function svgturkiyeharitasi() {
   function getIlceDetay() {
     // Secili ilceler setinden bir dizi oluştur
     const seciliIlceArray = Array.from(seciliIlceler);
-    //console.log(seciliIlceArray);
+    ////console.log(seciliIlceArray);
     // Ajax isteği yap
     const xhr = new XMLHttpRequest();
     const url = "config/getKeyWords.php";
@@ -1757,10 +1758,8 @@ function svgturkiyeharitasi() {
     xhr.onreadystatechange = function () {
       try {
         if (xhr.readyState === 4 && xhr.status === 200) {
-          console.log(xhr.responseText);
           const ilceDetaylari = JSON.parse(xhr.responseText);
           // Gelen verileri işle veya göster
-          console.log(ilceDetaylari);
 
           // Pozitif ve negatif ilçeleri ayrı ayrı al
           const positifIlceler = ilceDetaylari.pozitif;
