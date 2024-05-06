@@ -1729,7 +1729,6 @@ function svgturkiyeharitasi() {
       }
     });
 
-    
     // Text alanlarını temizle
     pozitifIlcelerTextarea.value = "";
     negatifIlcelerTextarea.value = "";
@@ -1833,13 +1832,12 @@ function svgturkiyeharitasi() {
                 negatifSemtlerTextarea.value += semt.trim() + "\n";
               }
             });
-           
           });
           // Negatif illeri textarea'ya ekle
           negatifIllerSet.forEach((il) => {
             negatifIller += il + "\n";
           });
-          negatifIllerTextarea.value = negatifIller; 
+          negatifIllerTextarea.value = negatifIller;
         }
       } catch (error) {
         console.error("Hata oluştu:", error);
@@ -1866,7 +1864,7 @@ function svgturkiyeharitasi() {
     });
 
   // İlçeleri belirli bir bölgeye göre seçen veya seçili olanları iptal eden işlev
-  function toggleBolge(bolge) {
+  /**function toggleBolge(bolge) {
     ilcePaths.forEach((ilcePath) => {
       const ilceBolge = ilcePath.getAttribute("data-bolge");
       const ilceID = ilcePath.id;
@@ -1881,12 +1879,64 @@ function svgturkiyeharitasi() {
             seciliIlceler.delete(ilceID); // İlçeyi listeden sil
           }
         } else {
-          // Eğer ilçe henüz seçili değilse, select işlemi yap
+          // Eğer ilçe seçili değilse select işemi yap
           selectIlceTek(ilceID);
           seciliIlceler.add(ilceID); // İlçeyi listeye ekle
         }
       }
     });
+    getIlceDetay(); // Seçilen ilçelerin detaylarını güncelle
+  }**/
+  function toggleBolge(bolge) {
+    let anySelected = false; // En az bir ilçenin seçili olup olmadığını kontrol etmek için bir bayrak
+    let allSelected = true; // Tüm ilçelerin seçili olup olmadığını kontrol etmek için bir bayrak
+
+    // Belirli bir bölgedeki ilçeleri seçme veya seçimleri kaldırma
+    ilcePaths.forEach((ilcePath) => {
+      const ilceBolge = ilcePath.getAttribute("data-bolge");
+      const ilceID = ilcePath.id;
+
+      if (ilceBolge === bolge) {
+        if (seciliIlceler.has(ilceID)) {
+          if (isOzelIlce(ilceID)) {
+            unselectOzelIlceTek(ilceID);
+            seciliIlceler.delete(ilceID); // İlçeyi listeden sil
+          } else {
+            unselectIlceTek(ilceID);
+            seciliIlceler.delete(ilceID); // İlçeyi listeden sil
+          }
+        } else {
+          selectIlceTek(ilceID);
+          seciliIlceler.add(ilceID); // İlçeyi listeye ekle
+        }
+      }
+      // En az bir ilçenin seçili olup olmadığını kontrol et
+      if (seciliIlceler.has(ilceID)) {
+        anySelected = true;
+      } else {
+        allSelected = false;
+      }
+    });
+    // Eğer en az bir ilçe seçiliyse, tüm bölgeyi seç
+    if (anySelected && !allSelected) {
+      ilcePaths.forEach((ilcePath) => {
+        const ilceBolge = ilcePath.getAttribute("data-bolge");
+        const ilceID = ilcePath.id;
+
+        if (ilceBolge === bolge && !seciliIlceler.has(ilceID)) {
+          selectIlceTek(ilceID);
+          seciliIlceler.add(ilceID);
+        }
+      });
+    }
+    // Eğer tüm ilçeler seçiliyse ve sadece bir bölge seçiliyorsa, tümünü seçimden kaldır
+    if (allSelected && seciliIlceler.size <= ilcePaths.length) {
+      ilcePaths.forEach((ilcePath) => {
+        const ilceID = ilcePath.id;
+        unselectIlceTek(ilceID);
+        seciliIlceler.delete(ilceID);
+      });
+    }
     getIlceDetay(); // Seçilen ilçelerin detaylarını güncelle
   }
 }
