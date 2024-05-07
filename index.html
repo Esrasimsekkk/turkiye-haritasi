@@ -24076,30 +24076,30 @@
       <div class="col-md-12 col-lg-6">
         <div class="table-info pt-4 custom-table">
           <h4>POZİTİF <br /></h4>
-          <div class="row mt-3">
+          <div class="row mt-3 mb-2">
             <div class="col">
-              <button
+              <input
                 onclick="kopyala('pozitif_il')"
-                class="btn btn-sm btn-light mt-2 pt-1"
-              >
-                İller
-              </button>
+                class="btn mt-2"
+                value="İller"
+              />
+
               <textarea
                 name="pozitif_il"
                 id="pozitif_il"
-                class="form-control mt-2"
+                class="form-control"
                 style="width: 100%; font-size: 12px"
                 rows="10"
                 placeholder="Pozitif İller buraya"
               ></textarea>
             </div>
             <div class="col">
-              <button
+              <input
                 onclick="kopyala('pozitif_ilce')"
-                class="btn btn-sm btn-light mt-2"
-              >
-                İlçeler
-              </button>
+                class="btn mt-2"
+                value="İlçeler"
+              />
+
               <textarea
                 name="pozitif_ilce"
                 id="pozitif_ilce"
@@ -24110,12 +24110,12 @@
               ></textarea>
             </div>
             <div class="col">
-              <button
+              <input
+                value="Semtler"
                 onclick="kopyala('pozitif_semt')"
-                class="btn btn-sm btn-light mt-2"
-              >
-                Semtler
-              </button>
+                class="btn mt-2"
+              />
+
               <textarea
                 name="pozitif_semt"
                 id="pozitif_semt"
@@ -24132,14 +24132,14 @@
       <div class="col-md-12 col-lg-6 mb-3">
         <div class="table-warning pt-4 custom-table">
           <h4>NEGATİF<br /></h4>
-          <div class="row mt-3">
+          <div class="row mt-3 mb-2">
             <div class="col">
-              <button
+              <input
+                value="İller"
                 onclick="kopyala('negatif_il')"
-                class="btn btn-sm btn-light mt-2"
-              >
-                İller
-              </button>
+                class="btn mt-2"
+              />
+
               <textarea
                 name="negatif_il"
                 id="negatif_il"
@@ -24150,12 +24150,11 @@
               ></textarea>
             </div>
             <div class="col">
-              <button
+              <input
+                value="İlçeler"
                 onclick="kopyala('negatif_ilce')"
-                class="btn btn-sm btn-light mt-2"
-              >
-                İlçeler
-              </button>
+                class="btn mt-2"
+              />
               <textarea
                 name="negatif_ilce"
                 id="negatif_ilce"
@@ -24166,12 +24165,12 @@
               ></textarea>
             </div>
             <div class="col">
-              <button
+              <input
+                value="Semtler"
                 onclick="kopyala('negatif_semt')"
-                class="btn btn-sm btn-light mt-2"
-              >
-                Semtler
-              </button>
+                class="btn mt-2"
+              />
+
               <textarea
                 name="negatif_semt"
                 id="negatif_semt"
@@ -24188,17 +24187,16 @@
     <div class="row pl-3 pr-3">
       <div class="col custom-table table-success col-md-12 col-lg-4">
         <!-- Genel Negatifler Listesi -->
-        <div class="col mt-4 pl-5 pr-5">
-          <button
+        <div class="col mt-2 pl-5 pr-5">
+          <input
+            value="Genel Negatifler Listesi"
             onclick="kopyala('genelNegatiflerTextarea')"
-            class="btn btn-sm btn-light mt-2"
-          >
-            Genel Negatifler Listesi
-          </button>
+            class="btn"
+          />
           <textarea
             style="font-size: 12px"
             id="genelNegatiflerTextarea"
-            class="form-control"
+            class="form-control mb-2"
             rows="10"
             placeholder="Genel Negatifler buraya"
           ></textarea>
@@ -24206,13 +24204,12 @@
       </div>
       <div class="col custom-table table-success col-md-12 col-lg-4">
         <!-- Negatif Siteler Listesi -->
-        <div class="col mt-4 pl-5 pr-5">
-          <button
+        <div class="col mt-2 mb-2 pl-5 pr-5">
+          <input
+            value="Negatif Siteler Listesi"
             onclick="kopyala('negatiflerTextarea')"
-            class="btn btn-sm btn-light mt-2"
-          >
-            Negatif Siteler Listesi
-          </button>
+            class="btn"
+          />
           <textarea
             style="font-size: 12px"
             id="negatiflerTextarea"
@@ -24224,13 +24221,13 @@
       </div>
       <div class="col custom-table table-success col-md-12 col-lg-4">
         <!-- Pozitif Siteler Listesi -->
-        <div class="col mt-4 pl-5 pr-5">
-          <button
+        <div class="col mt-2 mb-2 pl-5 pr-5">
+          <input
             onclick="kopyala('poztiflerTextarea')"
-            class="btn btn-sm btn-light mt-2"
-          >
-            Pozitif Siteler Listesi
-          </button>
+            class="btn"
+            value="Pozitif Siteler Listesi"
+          />
+
           <textarea
             style="font-size: 12px"
             id="poztiflerTextarea"
