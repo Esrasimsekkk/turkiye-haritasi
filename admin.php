@@ -1,3 +1,19 @@
+<?php
+// İzin verilen IP adreslerini tanımlayın
+$izin_verilen_ip_adresleri = array("123.456.789.012", "192.168.1.145","::1");
+
+// Ziyaretçinin IP adresini alın
+$ziyaretci_ip = $_SERVER['REMOTE_ADDR'];
+
+// Ziyaretçinin IP adresini izin verilen IP adresleriyle karşılaştırın
+if (!in_array($ziyaretci_ip, $izin_verilen_ip_adresleri)) {
+    // Eğer ziyaretçi izin verilen IP adreslerinden birine sahip değilse, erişimi reddedin veya uygun bir mesaj gösterin.
+    echo "Üzgünüz, bu sayfaya erişim izniniz bulunmamaktadır.";
+    exit; // Sayfanın ger
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
