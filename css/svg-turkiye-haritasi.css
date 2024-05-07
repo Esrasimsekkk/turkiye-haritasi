@@ -246,6 +246,12 @@ div.modal-body {
   right: 7%;
   top: 5%;
 }
+#negatif-kopyala:hover {
+  background-color: #ddd;
+}
+#temizle-butonu:hover {
+  background-color: #ddd;
+}
 
 .small-button {
   padding: 6px 12px; /* Yatay ve dikey boşluk */
