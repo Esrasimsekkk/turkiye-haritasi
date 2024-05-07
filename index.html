@@ -24078,24 +24078,28 @@
           <h4>POZİTİF <br /></h4>
           <div class="row mt-3">
             <div class="col">
-              <h5>İller</h5>
+              <button
+                onclick="kopyala('pozitif_il')"
+                class="btn btn-sm btn-light mt-2 pt-1"
+              >
+                İller
+              </button>
               <textarea
                 name="pozitif_il"
                 id="pozitif_il"
-                class="form-control"
+                class="form-control mt-2"
                 style="width: 100%; font-size: 12px"
                 rows="10"
                 placeholder="Pozitif İller buraya"
               ></textarea>
-              <button
-                onclick="kopyala('pozitif_il')"
-                class="btn btn-sm btn-dark mt-2"
-              >
-                Kopyala
-              </button>
             </div>
             <div class="col">
-              <h5>İlçeler</h5>
+              <button
+                onclick="kopyala('pozitif_ilce')"
+                class="btn btn-sm btn-light mt-2"
+              >
+                İlçeler
+              </button>
               <textarea
                 name="pozitif_ilce"
                 id="pozitif_ilce"
@@ -24104,15 +24108,14 @@
                 rows="10"
                 placeholder="Pozitif İlçeler buraya"
               ></textarea>
-              <button
-                onclick="kopyala('pozitif_ilce')"
-                class="btn btn-sm btn-dark mt-2"
-              >
-                Kopyala
-              </button>
             </div>
             <div class="col">
-              <h5>Semtler</h5>
+              <button
+                onclick="kopyala('pozitif_semt')"
+                class="btn btn-sm btn-light mt-2"
+              >
+                Semtler
+              </button>
               <textarea
                 name="pozitif_semt"
                 id="pozitif_semt"
@@ -24121,12 +24124,6 @@
                 rows="10"
                 placeholder="Pozitif Semtler buraya"
               ></textarea>
-              <button
-                onclick="kopyala('pozitif_semt')"
-                class="btn btn-sm btn-dark mt-2"
-              >
-                Kopyala
-              </button>
             </div>
           </div>
         </div>
@@ -24137,7 +24134,12 @@
           <h4>NEGATİF<br /></h4>
           <div class="row mt-3">
             <div class="col">
-              <h5>İller</h5>
+              <button
+                onclick="kopyala('negatif_il')"
+                class="btn btn-sm btn-light mt-2"
+              >
+                İller
+              </button>
               <textarea
                 name="negatif_il"
                 id="negatif_il"
@@ -24146,15 +24148,14 @@
                 rows="10"
                 placeholder="Negatif İller buraya"
               ></textarea>
-              <button
-                onclick="kopyala('negatif_il')"
-                class="btn btn-sm btn-dark mt-2"
-              >
-                Kopyala
-              </button>
             </div>
             <div class="col">
-              <h5>İlçeler</h5>
+              <button
+                onclick="kopyala('negatif_ilce')"
+                class="btn btn-sm btn-light mt-2"
+              >
+                İlçeler
+              </button>
               <textarea
                 name="negatif_ilce"
                 id="negatif_ilce"
@@ -24163,15 +24164,14 @@
                 rows="10"
                 placeholder="Negatif İlçeler buraya"
               ></textarea>
-              <button
-                onclick="kopyala('negatif_ilce')"
-                class="btn btn-sm btn-dark mt-2"
-              >
-                Kopyala
-              </button>
             </div>
             <div class="col">
-              <h5>Semtler</h5>
+              <button
+                onclick="kopyala('negatif_semt')"
+                class="btn btn-sm btn-light mt-2"
+              >
+                Semtler
+              </button>
               <textarea
                 name="negatif_semt"
                 id="negatif_semt"
@@ -24180,12 +24180,6 @@
                 rows="10"
                 placeholder="Negatif Semtler buraya"
               ></textarea>
-              <button
-                onclick="kopyala('negatif_semt')"
-                class="btn btn-sm btn-dark mt-2"
-              >
-                Kopyala
-              </button>
             </div>
           </div>
         </div>
@@ -24195,7 +24189,12 @@
       <div class="col custom-table table-success col-md-12 col-lg-4">
         <!-- Genel Negatifler Listesi -->
         <div class="col mt-4 pl-5 pr-5">
-          <h5>Genel Negatifler Listesi</h5>
+          <button
+            onclick="kopyala('genelNegatiflerTextarea')"
+            class="btn btn-sm btn-light mt-2"
+          >
+            Genel Negatifler Listesi
+          </button>
           <textarea
             style="font-size: 12px"
             id="genelNegatiflerTextarea"
@@ -24203,18 +24202,17 @@
             rows="10"
             placeholder="Genel Negatifler buraya"
           ></textarea>
-          <button
-            onclick="kopyala('genelNegatiflerTextarea')"
-            class="btn btn-sm btn-dark mt-2"
-          >
-            Kopyala
-          </button>
         </div>
       </div>
       <div class="col custom-table table-success col-md-12 col-lg-4">
         <!-- Negatif Siteler Listesi -->
         <div class="col mt-4 pl-5 pr-5">
-          <h5>Negatif Siteler Listesi</h5>
+          <button
+            onclick="kopyala('negatiflerTextarea')"
+            class="btn btn-sm btn-light mt-2"
+          >
+            Negatif Siteler Listesi
+          </button>
           <textarea
             style="font-size: 12px"
             id="negatiflerTextarea"
@@ -24222,18 +24220,17 @@
             rows="10"
             placeholder="Negatif Siteler buraya"
           ></textarea>
-          <button
-            onclick="kopyala('negatiflerTextarea')"
-            class="btn btn-sm btn-dark mt-2"
-          >
-            Kopyala
-          </button>
         </div>
       </div>
       <div class="col custom-table table-success col-md-12 col-lg-4">
         <!-- Pozitif Siteler Listesi -->
         <div class="col mt-4 pl-5 pr-5">
-          <h5>Pozitif Siteler Listesi</h5>
+          <button
+            onclick="kopyala('poztiflerTextarea')"
+            class="btn btn-sm btn-light mt-2"
+          >
+            Pozitif Siteler Listesi
+          </button>
           <textarea
             style="font-size: 12px"
             id="poztiflerTextarea"
@@ -24241,12 +24238,6 @@
             rows="10"
             placeholder="Pozitif Siteler buraya"
           ></textarea>
-          <button
-            onclick="kopyala('poztiflerTextarea')"
-            class="btn btn-sm btn-dark mt-2"
-          >
-            Kopyala
-          </button>
         </div>
       </div>
     </div>
