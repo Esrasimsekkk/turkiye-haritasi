@@ -227,7 +227,7 @@ div.modal-body {
 
 .custom-table {
   border-radius: 20px;
-  padding: 10px;
+  padding: 5px;
   margin-bottom: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -260,4 +260,13 @@ div.modal-body {
 /* Butonun üzerine gelindiğinde */
 .small-button:hover {
   background-color: #e0e0e0; /* Arka plan rengini değiştir */
+}
+
+.translucent-button {
+  background-color: transparent;
+  border: 0px solid transparent;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
