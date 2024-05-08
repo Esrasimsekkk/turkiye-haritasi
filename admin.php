@@ -338,7 +338,26 @@ if (!in_array($ziyaretci_ip, $izin_verilen_ip_adresleri)) {
         });
         // Verileri güncelle butonuna tıklandığında
         $("#updateCityData").click(function () {
-          var updatedData = $("#cityData").val(); // Güncellenen verileri al
+          // Güncellenen verileri al
+          var updatedData = $("#cityData").val();
+
+          // Verileri virgül veya boşlukla ayır
+          var words = updatedData.split(/[,\s]+/);
+
+          // Her kelimenin başındaki ve sonundaki boşlukları temizle
+          var cleanedWords = words.map(function(word) {
+              return word.trim();
+          });
+
+          // Boşluklu kelimeleri virgülle değiştir
+          var cleanedData = cleanedWords.join(',');
+
+          // Eğer en sonda fazladan virgül varsa sil
+          cleanedData = cleanedData.replace(/,+$/, '');
+
+          // Eğer virgül ve boşlukla ayrılmış veri varsa, bunları ayırıp virgülle birleştir
+          cleanedData = cleanedData.replace(/,\s+/g, ',');
+
           var plaka = $("#selectCity").val(); // Seçilen şehrin plakasını al
       
           // AJAX isteği ile güncellenen verileri ve plakayı gönder
@@ -347,7 +366,7 @@ if (!in_array($ziyaretci_ip, $izin_verilen_ip_adresleri)) {
             type: "POST",
             dataType: "json",
             data: {
-              updatedData: updatedData,
+              updatedData: cleanedData,
               plaka: plaka,
             },
             success: function (response) {
@@ -383,7 +402,33 @@ if (!in_array($ziyaretci_ip, $izin_verilen_ip_adresleri)) {
         });
         $("#updateDistrictData").click(function () {
           var updatedDistrictData = $("#districtData").val(); // Güncellenen ilçe detayları
+          // Verileri virgül veya boşlukla ayır
+          var words = updatedDistrictData.split(/[,\s]+/);
+          // Her kelimenin başındaki ve sonundaki boşlukları temizle
+          var cleanedWords = words.map(function(word) {
+              return word.trim();
+          });
+          // Boşluklu kelimeleri virgülle değiştir
+          var cleanedDistrictData = cleanedWords.join(',');
+          // Eğer en sonda fazladan virgül varsa sil
+          cleanedDistrictData = cleanedDistrictData.replace(/,+$/, '');
+          // Eğer virgül ve boşlukla ayrılmış veri varsa, bunları ayırıp virgülle birleştir
+          cleanedDistrictData = cleanedDistrictData.replace(/,\s+/g, ',');
+
           var updatedNeighborhoodData = $("#neighborhoodData").val(); // Güncellenen semtler
+          // Verileri virgül veya boşlukla ayır
+          var words = updatedNeighborhoodData.split(/[,\s]+/);
+          // Her kelimenin başındaki ve sonundaki boşlukları temizle
+          var cleanedWords = words.map(function(word) {
+              return word.trim();
+          });
+          // Boşluklu kelimeleri virgülle değiştir
+          var cleanedNeighborhoodData = cleanedWords.join(',');
+          // Eğer en sonda fazladan virgül varsa sil
+          cleanedNeighborhoodData = cleanedNeighborhoodData.replace(/,+$/, '');
+          // Eğer virgül ve boşlukla ayrılmış veri varsa, bunları ayırıp virgülle birleştir
+          cleanedNeighborhoodData = cleanedNeighborhoodData.replace(/,\s+/g, ',');
+
           var selectedDistrict = $("#selectDistrict").val(); // Seçilen ilçenin adı
       
           // AJAX isteği ile güncellenen verileri ve seçilen ilçenin adını gönder
@@ -392,8 +437,8 @@ if (!in_array($ziyaretci_ip, $izin_verilen_ip_adresleri)) {
             type: "POST",
             dataType: "json",
             data: {
-              updatedDistrictData: updatedDistrictData,
-              updatedNeighborhoodData: updatedNeighborhoodData,
+              updatedDistrictData: cleanedDistrictData,
+              updatedNeighborhoodData: cleanedNeighborhoodData,
               selectedDistrict: selectedDistrict,
             },
             success: function (response) {
