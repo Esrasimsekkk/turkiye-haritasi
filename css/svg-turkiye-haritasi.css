@@ -164,8 +164,8 @@ div.modal-body {
 
 #geri-butonu {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 5%;
+  left: 8%;
   z-index: 100;
   padding: 10px;
   border: 1px solid #ccc;
@@ -179,7 +179,6 @@ div.modal-body {
   background-color: #ddd;
 }
 
-/* CSS */
 .button-23 {
   background-color: #ffffff;
   border: 1px solid #222222;
@@ -239,13 +238,19 @@ div.modal-body {
 }
 #temizle-butonu {
   position: absolute;
-  bottom: 15%; /* İstediğiniz yüksekliği ayarlayın */
-  left: 8%; /* İstediğiniz sol kenar boşluğunu ayarlayın */
+  bottom: 16%; /* İstediğiniz yüksekliği ayarlayın */
+  right: 7%; /* İstediğiniz sol kenar boşluğunu ayarlayın */
 }
 #negatif-kopyala {
   position: absolute;
-  left: 87%;
+  right: 7%;
   top: 5%;
+}
+#negatif-kopyala:hover {
+  background-color: #ddd;
+}
+#temizle-butonu:hover {
+  background-color: #ddd;
 }
 
 .small-button {

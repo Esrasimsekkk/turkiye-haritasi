@@ -1835,7 +1835,9 @@ function svgturkiyeharitasi() {
           });
           // Negatif illeri textarea'ya ekle
           negatifIllerSet.forEach((il) => {
-            negatifIller += il + "\n";
+            if (!pozitifIllerSet.has(il)) {
+              negatifIller += il + "\n";
+            }
           });
           negatifIllerTextarea.value = negatifIller;
         }
