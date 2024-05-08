@@ -6,7 +6,12 @@
 
     <!-- SVG Türkiye Haritası -->
     <link href="css/svg-turkiye-haritasi.css" rel="stylesheet" />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha384-..."
+      crossorigin="anonymous"
+    />
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -24071,170 +24076,178 @@
       </button>
     </div>
 
-    <div class="row p-3">
-      <!-- Pozitif Bölüm -->
-      <div class="col-md-12 col-lg-6">
-        <div class="table-info pt-4 custom-table">
-          <h4>POZİTİF <br /></h4>
-          <div class="row mt-3 mb-2">
-            <div class="col">
-              <input
-                onclick="kopyala('pozitif_il')"
-                class="btn mt-2"
-                value="İller"
-              />
+    <div style="width: 90%; margin: auto">
+      <div class="row pt-2">
+        <!-- Pozitif Bölüm -->
+        <div class="col">
+          <div class="table-info custom-table">
+            <div class="row mb-2">
+              <div class="col">
+                <button
+                  onclick="kopyala('pozitif_il')"
+                  class="translucent-button mt-2 mb-2"
+                >
+                  <i class="fa-solid fa-copy"></i> İller
+                </button>
 
-              <textarea
-                name="pozitif_il"
-                id="pozitif_il"
-                class="form-control"
-                style="width: 100%; font-size: 12px"
-                rows="10"
-                placeholder="Pozitif İller buraya"
-              ></textarea>
+                <textarea
+                  name="pozitif_il"
+                  id="pozitif_il"
+                  class="form-control"
+                  style="width: 90%; font-size: 12px"
+                  rows="10"
+                  placeholder="Pozitif İller buraya"
+                ></textarea>
+              </div>
+              <div class="col">
+                <button
+                  onclick="kopyala('pozitif_ilce')"
+                  class="translucent-button mt-2 mb-2"
+                >
+                  <i class="fa-solid fa-copy"></i> İlçeler
+                </button>
+
+                <textarea
+                  name="pozitif_ilce"
+                  id="pozitif_ilce"
+                  class="form-control"
+                  style="width: 90%; font-size: 12px"
+                  rows="10"
+                  placeholder="Pozitif İlçeler buraya"
+                ></textarea>
+              </div>
+              <div class="col">
+                <button
+                  onclick="kopyala('pozitif_semt')"
+                  class="translucent-button mt-2 mb-2"
+                >
+                  <i class="fa-solid fa-copy"></i> Semtler
+                </button>
+                <textarea
+                  name="pozitif_semt"
+                  id="pozitif_semt"
+                  class="form-control"
+                  style="width: 90%; font-size: 12px"
+                  rows="10"
+                  placeholder="Pozitif Semtler buraya"
+                ></textarea>
+              </div>
             </div>
-            <div class="col">
-              <input
-                onclick="kopyala('pozitif_ilce')"
-                class="btn mt-2"
-                value="İlçeler"
-              />
+          </div>
+        </div>
+        <!-- Negatif Bölüm -->
+        <div class="col">
+          <div class="table-warning custom-table">
+            <div class="row mb-2">
+              <div class="col">
+                <button
+                  onclick="kopyala('negatif_il')"
+                  class="translucent-button mt-2 mb-2"
+                >
+                  <i class="fa-solid fa-copy"></i> İller
+                </button>
 
-              <textarea
-                name="pozitif_ilce"
-                id="pozitif_ilce"
-                class="form-control"
-                style="width: 100%; font-size: 12px"
-                rows="10"
-                placeholder="Pozitif İlçeler buraya"
-              ></textarea>
-            </div>
-            <div class="col">
-              <input
-                value="Semtler"
-                onclick="kopyala('pozitif_semt')"
-                class="btn mt-2"
-              />
+                <textarea
+                  name="negatif_il"
+                  id="negatif_il"
+                  class="form-control"
+                  style="width: 90%; font-size: 12px"
+                  rows="10"
+                  placeholder="Negatif İller buraya"
+                ></textarea>
+              </div>
+              <div class="col">
+                <button
+                  onclick="kopyala('negatif_ilce')"
+                  class="translucent-button mt-2 mb-2"
+                >
+                  <i class="fa-solid fa-copy"></i> İlçeler
+                </button>
+                <textarea
+                  name="negatif_ilce"
+                  id="negatif_ilce"
+                  class="form-control"
+                  style="width: 90%; font-size: 12px"
+                  rows="10"
+                  placeholder="Negatif İlçeler buraya"
+                ></textarea>
+              </div>
+              <div class="col">
+                <button
+                  onclick="kopyala('negatif_semt')"
+                  class="translucent-button mt-2 mb-2"
+                >
+                  <i class="fa-solid fa-copy"></i> Semtler
+                </button>
 
-              <textarea
-                name="pozitif_semt"
-                id="pozitif_semt"
-                class="form-control"
-                style="width: 100%; font-size: 12px"
-                rows="10"
-                placeholder="Pozitif Semtler buraya"
-              ></textarea>
+                <textarea
+                  name="negatif_semt"
+                  id="negatif_semt"
+                  class="form-control"
+                  style="width: 90%; font-size: 12px"
+                  rows="10"
+                  placeholder="Negatif Semtler buraya"
+                ></textarea>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Negatif Bölüm -->
-      <div class="col-md-12 col-lg-6 mb-3">
-        <div class="table-warning pt-4 custom-table">
-          <h4>NEGATİF<br /></h4>
-          <div class="row mt-3 mb-2">
-            <div class="col">
-              <input
-                value="İller"
-                onclick="kopyala('negatif_il')"
-                class="btn mt-2"
-              />
-
-              <textarea
-                name="negatif_il"
-                id="negatif_il"
-                class="form-control"
-                style="width: 100%; font-size: 12px"
-                rows="10"
-                placeholder="Negatif İller buraya"
-              ></textarea>
-            </div>
-            <div class="col">
-              <input
-                value="İlçeler"
-                onclick="kopyala('negatif_ilce')"
-                class="btn mt-2"
-              />
-              <textarea
-                name="negatif_ilce"
-                id="negatif_ilce"
-                class="form-control"
-                style="width: 100%; font-size: 12px"
-                rows="10"
-                placeholder="Negatif İlçeler buraya"
-              ></textarea>
-            </div>
-            <div class="col">
-              <input
-                value="Semtler"
-                onclick="kopyala('negatif_semt')"
-                class="btn mt-2"
-              />
-
-              <textarea
-                name="negatif_semt"
-                id="negatif_semt"
-                class="form-control"
-                style="width: 100%; font-size: 12px"
-                rows="10"
-                placeholder="Negatif Semtler buraya"
-              ></textarea>
-            </div>
+      <div class="row pl-3 pr-3">
+        <div class="col custom-table table-success col-md-12 col-lg-4">
+          <!-- Genel Negatifler Listesi -->
+          <div class="col mt-2">
+            <button
+              onclick="kopyala('genelNegatiflerTextarea')"
+              class="translucent-button mb-2"
+            >
+              <i class="fa-solid fa-copy"></i> Genel Negatifler Listesi
+            </button>
+            <textarea
+              style="width: 90%; font-size: 12px"
+              id="genelNegatiflerTextarea"
+              class="form-control mb-2"
+              rows="10"
+              placeholder="Genel Negatifler buraya"
+            ></textarea>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row pl-3 pr-3">
-      <div class="col custom-table table-success col-md-12 col-lg-4">
-        <!-- Genel Negatifler Listesi -->
-        <div class="col mt-2 pl-5 pr-5">
-          <input
-            value="Genel Negatifler Listesi"
-            onclick="kopyala('genelNegatiflerTextarea')"
-            class="btn"
-          />
-          <textarea
-            style="font-size: 12px"
-            id="genelNegatiflerTextarea"
-            class="form-control mb-2"
-            rows="10"
-            placeholder="Genel Negatifler buraya"
-          ></textarea>
+        <div class="col custom-table table-success col-md-12 col-lg-4">
+          <!-- Negatif Siteler Listesi -->
+          <div class="col mt-2 mb-2">
+            <button
+              onclick="kopyala('negatiflerTextarea')"
+              class="translucent-button mb-2"
+            >
+              <i class="fa-solid fa-copy"></i> Negatif Siteler Listesi
+            </button>
+            <textarea
+              style="width: 90%; font-size: 12px"
+              id="negatiflerTextarea"
+              class="form-control"
+              rows="10"
+              placeholder="Negatif Siteler buraya"
+            ></textarea>
+          </div>
         </div>
-      </div>
-      <div class="col custom-table table-success col-md-12 col-lg-4">
-        <!-- Negatif Siteler Listesi -->
-        <div class="col mt-2 mb-2 pl-5 pr-5">
-          <input
-            value="Negatif Siteler Listesi"
-            onclick="kopyala('negatiflerTextarea')"
-            class="btn"
-          />
-          <textarea
-            style="font-size: 12px"
-            id="negatiflerTextarea"
-            class="form-control"
-            rows="10"
-            placeholder="Negatif Siteler buraya"
-          ></textarea>
-        </div>
-      </div>
-      <div class="col custom-table table-success col-md-12 col-lg-4">
-        <!-- Pozitif Siteler Listesi -->
-        <div class="col mt-2 mb-2 pl-5 pr-5">
-          <input
-            onclick="kopyala('poztiflerTextarea')"
-            class="btn"
-            value="Pozitif Siteler Listesi"
-          />
+        <div class="col custom-table table-success col-md-12 col-lg-4">
+          <!-- Pozitif Siteler Listesi -->
+          <div class="col mt-2 mb-2">
+            <button
+              onclick="kopyala('poztiflerTextarea')"
+              class="translucent-button mb-2"
+            >
+              <i class="fa-solid fa-copy"></i> Pozitif Siteler Listesi
+            </button>
 
-          <textarea
-            style="font-size: 12px"
-            id="poztiflerTextarea"
-            class="form-control"
-            rows="10"
-            placeholder="Pozitif Siteler buraya"
-          ></textarea>
+            <textarea
+              style="width: 90%; font-size: 12px"
+              id="poztiflerTextarea"
+              class="form-control"
+              rows="10"
+              placeholder="Pozitif Siteler buraya"
+            ></textarea>
+          </div>
         </div>
       </div>
     </div>
