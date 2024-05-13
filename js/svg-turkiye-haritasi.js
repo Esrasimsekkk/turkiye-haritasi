@@ -1835,9 +1835,7 @@ function svgturkiyeharitasi() {
           });
           // Negatif illeri textarea'ya ekle
           negatifIllerSet.forEach((il) => {
-            if (!pozitifIllerSet.has(il)) {
-              negatifIller += il + "\n";
-            }
+            negatifIller += il + "\n";
           });
           negatifIllerTextarea.value = negatifIller;
         }
@@ -1849,6 +1847,10 @@ function svgturkiyeharitasi() {
     };
     const data = JSON.stringify({ ilceler: seciliIlceArray });
     xhr.send(data);
+
+    // Seçili ilçelerin sayısını almak
+    const seciliIlceSayisi = seciliIlceArray.length;
+    document.getElementById("seciliIlceSayisi").innerText = seciliIlceSayisi;
   }
 
   // Avrupa bölgelerini seçen butonun tıklama olayı
@@ -1865,30 +1867,6 @@ function svgturkiyeharitasi() {
       toggleBolge("anadolu");
     });
 
-  // İlçeleri belirli bir bölgeye göre seçen veya seçili olanları iptal eden işlev
-  /**function toggleBolge(bolge) {
-    ilcePaths.forEach((ilcePath) => {
-      const ilceBolge = ilcePath.getAttribute("data-bolge");
-      const ilceID = ilcePath.id;
-
-      if (ilceBolge === bolge) {
-        if (seciliIlceler.has(ilceID)) {
-          if (isOzelIlce(ilceID)) {
-            unselectOzelIlceTek(ilceID);
-            seciliIlceler.delete(ilceID);
-          } else {
-            unselectIlceTek(ilceID);
-            seciliIlceler.delete(ilceID); // İlçeyi listeden sil
-          }
-        } else {
-          // Eğer ilçe seçili değilse select işemi yap
-          selectIlceTek(ilceID);
-          seciliIlceler.add(ilceID); // İlçeyi listeye ekle
-        }
-      }
-    });
-    getIlceDetay(); // Seçilen ilçelerin detaylarını güncelle
-  }**/
   function toggleBolge(bolge) {
     let anySelected = false; // En az bir ilçenin seçili olup olmadığını kontrol etmek için bir bayrak
     let allSelected = true; // Tüm ilçelerin seçili olup olmadığını kontrol etmek için bir bayrak
