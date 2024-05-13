@@ -1719,6 +1719,7 @@ function svgturkiyeharitasi() {
   // Butonun tıklanma olayını dinle
   temizleButonu.addEventListener("click", function () {
     // Gruplar için ilçeleri kaldır
+    document.getElementById("seciliIlSayisi").innerText = 0;
     document.getElementById("seciliIlceSayisi").innerText = 0;
     seciliIlceler.forEach((ilceID) => {
       if (isOzelIlce(ilceID)) {
@@ -1779,6 +1780,7 @@ function svgturkiyeharitasi() {
 
           let pozitifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
           let negatifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
+          let pozitifIllerSayi = [];
 
           positifIlceler.forEach((item) => {
             // İl detaylarını virgüllerle ayrılmış kelimelere ayır
@@ -1789,6 +1791,14 @@ function svgturkiyeharitasi() {
             ilDetayKelimeleri.forEach((kelime) => {
               pozitifIllerSet.add(kelime.trim());
             });
+
+            // İl detaylarını tek seferde al ve sadece ekleme yapmadan önce kontrol et
+              if (ilDetayKelimeleri.length > 0) {
+                const il = ilDetayKelimeleri[0].trim();
+                if (!pozitifIllerSayi.includes(il)) {
+                    pozitifIllerSayi.push(il);
+                }
+            }
 
             // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
             const ilceDetayKelimeleri = item.ilce_detay.split(",");
@@ -1809,6 +1819,8 @@ function svgturkiyeharitasi() {
             pozitifIller += il + "\n";
           });
           pozitifIllerTextarea.value = pozitifIller;
+
+          document.getElementById("seciliIlSayisi").innerText = pozitifIllerSayi.length;
 
           negatifIlceler.forEach((item) => {
             // İl detaylarını virgüllerle ayrılmış kelimelere ayır
