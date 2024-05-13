@@ -1719,6 +1719,7 @@ function svgturkiyeharitasi() {
   // Butonun tıklanma olayını dinle
   temizleButonu.addEventListener("click", function () {
     // Gruplar için ilçeleri kaldır
+    document.getElementById("seciliIlceSayisi").innerText = 0;
     seciliIlceler.forEach((ilceID) => {
       if (isOzelIlce(ilceID)) {
         unselectOzelIlceTek(ilceID);
