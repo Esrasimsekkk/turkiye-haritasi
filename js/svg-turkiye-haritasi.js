@@ -1719,6 +1719,8 @@ function svgturkiyeharitasi() {
   // Butonun tıklanma olayını dinle
   temizleButonu.addEventListener("click", function () {
     // Gruplar için ilçeleri kaldır
+    document.getElementById("seciliIlSayisi").innerText = 0;
+    document.getElementById("seciliIlceSayisi").innerText = 0;
     seciliIlceler.forEach((ilceID) => {
       if (isOzelIlce(ilceID)) {
         unselectOzelIlceTek(ilceID);
@@ -1778,6 +1780,7 @@ function svgturkiyeharitasi() {
 
           let pozitifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
           let negatifIllerSet = new Set(); // Her bir il için sadece bir kez eklemek için bir Set kullanıyoruz
+          let pozitifIllerSayi = [];
 
           positifIlceler.forEach((item) => {
             // İl detaylarını virgüllerle ayrılmış kelimelere ayır
@@ -1788,6 +1791,14 @@ function svgturkiyeharitasi() {
             ilDetayKelimeleri.forEach((kelime) => {
               pozitifIllerSet.add(kelime.trim());
             });
+
+            // İl detaylarını tek seferde al ve sadece ekleme yapmadan önce kontrol et
+              if (ilDetayKelimeleri.length > 0) {
+                const il = ilDetayKelimeleri[0].trim();
+                if (!pozitifIllerSayi.includes(il)) {
+                    pozitifIllerSayi.push(il);
+                }
+            }
 
             // Her bir ilçe detayını virgüllerle ayrılmış kelimeler halinde alt alta ekle
             const ilceDetayKelimeleri = item.ilce_detay.split(",");
@@ -1808,6 +1819,8 @@ function svgturkiyeharitasi() {
             pozitifIller += il + "\n";
           });
           pozitifIllerTextarea.value = pozitifIller;
+
+          document.getElementById("seciliIlSayisi").innerText = pozitifIllerSayi.length;
 
           negatifIlceler.forEach((item) => {
             // İl detaylarını virgüllerle ayrılmış kelimelere ayır
@@ -1833,13 +1846,13 @@ function svgturkiyeharitasi() {
               }
             });
           });
-          // Negatif illeri textarea'ya ekle
+          // Negatif illeri kontrol ederek, pozitif iller listesinde olmayanları textarea'ya ekleyin
           negatifIllerSet.forEach((il) => {
+            // Eğer bu il pozitif listelerde bulunmuyorsa, textarea'ya ekleyin
             if (!pozitifIllerSet.has(il)) {
-              negatifIller += il + "\n";
+                negatifIllerTextarea.value += il + "\n";
             }
           });
-          negatifIllerTextarea.value = negatifIller;
         }
       } catch (error) {
         console.error("Hata oluştu:", error);
@@ -1849,6 +1862,10 @@ function svgturkiyeharitasi() {
     };
     const data = JSON.stringify({ ilceler: seciliIlceArray });
     xhr.send(data);
+
+    // Seçili ilçelerin sayısını almak
+    const seciliIlceSayisi = seciliIlceArray.length;
+    document.getElementById("seciliIlceSayisi").innerText = seciliIlceSayisi;
   }
 
   // Avrupa bölgelerini seçen butonun tıklama olayı
@@ -1865,30 +1882,6 @@ function svgturkiyeharitasi() {
       toggleBolge("anadolu");
     });
 
-  // İlçeleri belirli bir bölgeye göre seçen veya seçili olanları iptal eden işlev
-  /**function toggleBolge(bolge) {
-    ilcePaths.forEach((ilcePath) => {
-      const ilceBolge = ilcePath.getAttribute("data-bolge");
-      const ilceID = ilcePath.id;
-
-      if (ilceBolge === bolge) {
-        if (seciliIlceler.has(ilceID)) {
-          if (isOzelIlce(ilceID)) {
-            unselectOzelIlceTek(ilceID);
-            seciliIlceler.delete(ilceID);
-          } else {
-            unselectIlceTek(ilceID);
-            seciliIlceler.delete(ilceID); // İlçeyi listeden sil
-          }
-        } else {
-          // Eğer ilçe seçili değilse select işemi yap
-          selectIlceTek(ilceID);
-          seciliIlceler.add(ilceID); // İlçeyi listeye ekle
-        }
-      }
-    });
-    getIlceDetay(); // Seçilen ilçelerin detaylarını güncelle
-  }**/
   function toggleBolge(bolge) {
     let anySelected = false; // En az bir ilçenin seçili olup olmadığını kontrol etmek için bir bayrak
     let allSelected = true; // Tüm ilçelerin seçili olup olmadığını kontrol etmek için bir bayrak
