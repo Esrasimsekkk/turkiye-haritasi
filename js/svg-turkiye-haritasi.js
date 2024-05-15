@@ -1846,11 +1846,13 @@ function svgturkiyeharitasi() {
               }
             });
           });
-          // Negatif illeri textarea'ya ekle
+          // Negatif illeri kontrol ederek, pozitif iller listesinde olmayanları textarea'ya ekleyin
           negatifIllerSet.forEach((il) => {
-            negatifIller += il + "\n";
+            // Eğer bu il pozitif listelerde bulunmuyorsa, textarea'ya ekleyin
+            if (!pozitifIllerSet.has(il)) {
+                negatifIllerTextarea.value += il + "\n";
+            }
           });
-          negatifIllerTextarea.value = negatifIller;
         }
       } catch (error) {
         console.error("Hata oluştu:", error);
