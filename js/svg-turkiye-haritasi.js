@@ -1630,7 +1630,6 @@ function svgturkiyeharitasi() {
       "urgup",
       "avanos",
       "elbistan",
-      "gediz",
     ],
     "#92b535": [
       "tosya",
@@ -1750,7 +1749,6 @@ function svgturkiyeharitasi() {
   function getIlceDetay() {
     // Secili ilceler setinden bir dizi oluştur
     const seciliIlceArray = Array.from(seciliIlceler);
-    ////console.log(seciliIlceArray);
     // Ajax isteği yap
     const xhr = new XMLHttpRequest();
     const url = "config/getKeyWords.php";
